@@ -1,13 +1,13 @@
 angular.module( 'makeEmGreen', [
   'templates-app',
   'templates-common',
+  'meg.menu',
   'meg.home',
-  'meg.about',
   'ui.router'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+  $urlRouterProvider.otherwise( '/menu' );
 })
 
 .run( function run () {

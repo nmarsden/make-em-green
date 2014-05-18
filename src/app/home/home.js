@@ -15,7 +15,7 @@ angular.module( 'meg.home', [
   });
 })
 
-.controller( 'HomeCtrl', function HomeController( $scope, $modal, $log ) {
+.controller( 'HomeCtrl', function HomeController( $scope, $modal, $location ) {
 
     var squares = [
         { id: 0, selected: true },
@@ -35,10 +35,7 @@ angular.module( 'meg.home', [
     };
 
     var showMenu = function() {
-        // TODO hide board and show START button
-        // TODO show instructions
-        // "In a world where there are non-green blocks, you have been tasked with making them all green!"
-        initBoard();
+        $location.path("menu");
     };
 
     var initBoard = function() {
