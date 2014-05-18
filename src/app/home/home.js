@@ -26,11 +26,27 @@ angular.module( 'meg.home', [
         { id: 5, selected: true },
         { id: 6, selected: true },
         { id: 7, selected: false },
-        { id: 8, selected: true }
-        ];
+        { id: 8, selected: true },
+        { id: 9, selected: true },
+        { id: 10, selected: true },
+        { id: 11, selected: false },
+        { id: 12, selected: true },
+        { id: 13, selected: false },
+        { id: 14, selected: true },
+        { id: 15, selected: true },
+        { id: 16, selected: true },
+        { id: 17, selected: false },
+        { id: 18, selected: true },
+        { id: 19, selected: true },
+        { id: 20, selected: true },
+        { id: 21, selected: false },
+        { id: 22, selected: true },
+        { id: 23, selected: false },
+        { id: 24, selected: true }
+    ];
 
     var gameState = {
-        movesLeft: 5,
+        movesLeft: 10,
         squares: squares
     };
 
@@ -43,7 +59,7 @@ angular.module( 'meg.home', [
         for(; i<len; i++) {
             squares[i].selected = false;
         }
-        gameState.movesLeft = 5;
+        gameState.movesLeft = 10;
     };
 
     var isGameWon = function() {
@@ -57,11 +73,11 @@ angular.module( 'meg.home', [
     };
 
     var indexToCoords = function(index) {
-        return {row: Math.floor(index / 3), col: (index % 3)};
+        return {row: Math.floor(index / 5), col: (index % 5)};
     };
 
     var coordsToIndex = function(coords) {
-        return (coords.row * 3) + coords.col;
+        return (coords.row * 5) + coords.col;
     };
 
     var adjustedCoords = function(coords, rowDiff, colDiff) {
@@ -74,13 +90,13 @@ angular.module( 'meg.home', [
     var calcSquaresToToggle = function(index) {
         var indexes = [ index ];
         var coords = indexToCoords(index);
-        if (coords.col < 2) {
+        if (coords.col < 4) {
             indexes.push(coordsToIndex(adjustedCoords(coords, 0, +1)));
         }
         if (coords.col > 0) {
             indexes.push(coordsToIndex(adjustedCoords(coords, 0, -1)));
         }
-        if (coords.row < 2) {
+        if (coords.row < 4) {
             indexes.push(coordsToIndex(adjustedCoords(coords, +1, 0)));
         }
         if (coords.row > 0) {
