@@ -17,12 +17,6 @@ angular.module( 'meg.menu', [
 })
 
 .controller( 'MenuCtrl', function MenuCtrl( $scope ) {
-  // This is simple a demo for UI Boostrap.
-  $scope.dropdownDemoItems = [
-    "The first choice!",
-    "And another choice for you.",
-    "but wait! A third!"
-  ];
 })
 
 ;
