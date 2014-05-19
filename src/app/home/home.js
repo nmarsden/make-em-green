@@ -119,33 +119,7 @@ angular.module( 'meg.home', [
     puz[98] = [4 ,21,31,21,4 ];
     puz[99] = [31,31,31,31,31];
 
-    var squares = [
-        { id: 0, selected: true },
-        { id: 1, selected: false },
-        { id: 2, selected: true },
-        { id: 3, selected: false },
-        { id: 4, selected: true },
-        { id: 5, selected: true },
-        { id: 6, selected: true },
-        { id: 7, selected: false },
-        { id: 8, selected: true },
-        { id: 9, selected: true },
-        { id: 10, selected: true },
-        { id: 11, selected: false },
-        { id: 12, selected: true },
-        { id: 13, selected: false },
-        { id: 14, selected: true },
-        { id: 15, selected: true },
-        { id: 16, selected: true },
-        { id: 17, selected: false },
-        { id: 18, selected: true },
-        { id: 19, selected: true },
-        { id: 20, selected: true },
-        { id: 21, selected: false },
-        { id: 22, selected: true },
-        { id: 23, selected: false },
-        { id: 24, selected: true }
-    ];
+    var squares = [];
 
     var gameState = {
         selectedLevel: 1,
@@ -159,13 +133,14 @@ angular.module( 'meg.home', [
 
     var initSquares = function(level) {
         var levelData = puz[level - 1];
-        var i = 0, row = 0, len = squares.length;
+        var i = 0, row = 0, len = 25;
+        squares.length = 0;
         for (; i < len; i=i+5, row++) {
-            squares[i  ].selected = !!(levelData[row] & 1);
-            squares[i+1].selected = !!(levelData[row] & 2);
-            squares[i+2].selected = !!(levelData[row] & 4);
-            squares[i+3].selected = !!(levelData[row] & 8);
-            squares[i+4].selected = !!(levelData[row] & 16);
+            squares.push({ id: i,   selected: !!(levelData[row] & 1) });
+            squares.push({ id: i+1, selected: !!(levelData[row] & 2) });
+            squares.push({ id: i+2, selected: !!(levelData[row] & 4) });
+            squares.push({ id: i+3, selected: !!(levelData[row] & 8) });
+            squares.push({ id: i+4, selected: !!(levelData[row] & 16) });
         }
     };
 

@@ -1,4 +1,5 @@
 angular.module( 'makeEmGreen', [
+  'ngAnimate',
   'templates-app',
   'templates-common',
   'meg.menu',
