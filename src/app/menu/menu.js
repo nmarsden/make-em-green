@@ -1,6 +1,5 @@
 angular.module( 'meg.menu', [
   'ui.router',
-  'placeholders',
   'ui.bootstrap'
 ])
 
