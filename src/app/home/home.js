@@ -123,7 +123,7 @@ angular.module( 'meg.home', [
 
     var gameState = {
         selectedLevel: 1,
-        movesLeft: 10,
+        movesLeft: 15,
         squares: squares
     };
 
@@ -146,7 +146,7 @@ angular.module( 'meg.home', [
 
     var initBoard = function() {
         initSquares(gameState.selectedLevel);
-        gameState.movesLeft = 10;
+        gameState.movesLeft = 15;
     };
 
     var isGameWon = function() {
