@@ -136,11 +136,11 @@ angular.module( 'meg.home', [
         var i = 0, row = 0, len = 25;
         squares.length = 0;
         for (; i < len; i=i+5, row++) {
-            squares.push({ id: i,   selected: !!(levelData[row] & 1) });
-            squares.push({ id: i+1, selected: !!(levelData[row] & 2) });
-            squares.push({ id: i+2, selected: !!(levelData[row] & 4) });
-            squares.push({ id: i+3, selected: !!(levelData[row] & 8) });
-            squares.push({ id: i+4, selected: !!(levelData[row] & 16) });
+            squares.push({ id: i,   selected: !(levelData[row] & 1) });
+            squares.push({ id: i+1, selected: !(levelData[row] & 2) });
+            squares.push({ id: i+2, selected: !(levelData[row] & 4) });
+            squares.push({ id: i+3, selected: !(levelData[row] & 8) });
+            squares.push({ id: i+4, selected: !(levelData[row] & 16) });
         }
     };
 
