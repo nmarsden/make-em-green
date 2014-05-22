@@ -124,7 +124,9 @@ angular.module( 'meg.home', [
     var gameState = {
         selectedLevel: 1,
         movesLeft: 15,
-        squares: squares
+        squares: squares,
+        topLevelCompleted: 0,
+        isLevelLocked: false
     };
 
     var showMenu = function() {
@@ -235,7 +237,14 @@ angular.module( 'meg.home', [
         });
     };
 
+    var updateTopLevelCompleted = function() {
+        if (gameState.selectedLevel > gameState.topLevelCompleted) {
+            gameState.topLevelCompleted = gameState.selectedLevel;
+        }
+    };
+
     var gameWon = function() {
+        updateTopLevelCompleted();
         showModal({
             title: "Level Completed",
             message: "You are awesome! Ready for the next level?",
@@ -247,6 +256,10 @@ angular.module( 'meg.home', [
     };
 
     $scope.gameState = gameState;
+
+    $scope.$watch('gameState.selectedLevel', function(selectedLevel) {
+        gameState.isLevelLocked = (selectedLevel > (gameState.topLevelCompleted + 1));
+    });
 
     $scope.selectPreviousLevel = selectPreviousLevel;
 

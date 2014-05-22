@@ -7,8 +7,12 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
     </button>
 </div>
-<div class="board-container">
-    <div class="board noselect">
+<div class="board-container noselect">
+    <div class="show-lock" ng-show="gameState.isLevelLocked">
+        <span class="lock-icon glyphicon glyphicon-lock"></span>
+        <span class="lock-label">Locked</span>
+    </div>
+    <div class="board">
         <div class="board-square"
              ng-repeat="square in gameState.squares"
              ng-click="clickSquare($index)"
