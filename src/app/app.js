@@ -8,14 +8,14 @@ angular.module( 'makeEmGreen', [
   'ui.router'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config([ '$stateProvider', '$urlRouterProvider', function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/menu' );
-})
+}])
 
 .run( function run () {
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $rootScope, gameStateService ) {
+.controller( 'AppCtrl', [ '$rootScope', 'gameStateService', function AppCtrl ( $rootScope, gameStateService ) {
 
     $rootScope.$on("$stateChangeStart", function (event, next, current) {
 
@@ -29,7 +29,7 @@ angular.module( 'makeEmGreen', [
     window.onbeforeunload = function (event) {
         $rootScope.$broadcast('savestate');
     };
-})
+}])
 
 ;
 

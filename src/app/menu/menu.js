@@ -3,7 +3,7 @@ angular.module( 'meg.menu', [
   'ui.bootstrap'
 ])
 
-.config(function config( $stateProvider ) {
+.config([ '$stateProvider', function config( $stateProvider ) {
   $stateProvider.state( 'menu', {
     url: '/menu',
     views: {
@@ -13,9 +13,9 @@ angular.module( 'meg.menu', [
       }
     }
   });
-})
+}])
 
-.controller( 'MenuCtrl', function MenuCtrl( $scope ) {
-})
+.controller( 'MenuCtrl', [ '$scope', function MenuCtrl( $scope ) {
+}])
 
 ;

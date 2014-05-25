@@ -3,7 +3,7 @@ angular.module( 'meg.home', [
   'meg.gameStateService'
 ])
 
-.config(function config( $stateProvider) {
+.config([ '$stateProvider', function config( $stateProvider) {
   $stateProvider.state( 'home', {
     url: '/home',
     views: {
@@ -13,9 +13,10 @@ angular.module( 'meg.home', [
       }
     }
   });
-})
+}])
 
-.controller( 'HomeCtrl', function HomeController( $scope, $modal, $location, gameStateService ) {
+.controller( 'HomeCtrl',
+    [ '$scope', '$modal', '$location', 'gameStateService', function HomeController( $scope, $modal, $location, gameStateService ) {
 
     var puz = [];
     puz[ 0] = [0,0,21,0 ,0];
@@ -317,7 +318,7 @@ angular.module( 'meg.home', [
         ];
 
     initBoard();
-});
+}]);
 
 var ModalInstanceCtrl = function ($scope, $modalInstance, modalContents) {
 
@@ -331,4 +332,4 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, modalContents) {
         $modalInstance.dismiss('cancel');
     };
 };
-
+ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', 'modalContents'];
