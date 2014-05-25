@@ -13,13 +13,14 @@
 // ---- Bootstrap customizations for main page ----
 
 .jumbotron {
-  margin: 40px 0 40px 0;
+  margin: 10px 0;
+  padding: 5px;
   text-align: center;
+  position: relative;
 
   h1 {
-    margin-bottom: 20px;
-    font-size: 55px;
-    line-height: 1;
+    font-size: 50px;
+    margin-top: 10px;
   }
 }
 
@@ -33,6 +34,12 @@
   color: greenyellow;
 }
 
+.version {
+  color: white;
+  position: absolute;
+  right: 7px;
+  bottom: 5px;
+}
 // ---- Styles for all the submodules and components we are using. ----
 
 @import '../app/menu/menu.less';
