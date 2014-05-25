@@ -1,16 +1,31 @@
 <div class="text-center">
-    <button type="button" class="btn btn-default btn-lg" ng-click="selectPreviousLevel()">
+    <button type="button" class="btn btn-default btn-lg" ng-disabled="gameState.selectedLevel === 1" ng-click="selectPreviousLevel()">
         <span class="glyphicon glyphicon-chevron-left"></span>
     </button>
     <span class="badge">Level {{gameState.selectedLevel}}</span>
-    <button type="button" class="btn btn-default btn-lg"  ng-click="selectNextLevel()">
+    <button type="button" class="btn btn-default btn-lg" ng-disabled="gameState.selectedLevel === 100" ng-click="selectNextLevel()">
         <span class="glyphicon glyphicon-chevron-right"></span>
     </button>
 </div>
 <div class="board-container noselect">
-    <div class="show-lock" ng-show="gameState.isLevelLocked">
+    <div class="overlay" ng-show="gameState.isLevelLocked">
         <span class="lock-icon glyphicon glyphicon-lock"></span>
         <span class="lock-label">Locked</span>
+    </div>
+    <div class="overlay" ng-show="isShowSolved()">
+        <span class="solved-background"></span>
+
+        <!-- TODO: Show stars once the calculation of stars earned is implemented! -->
+        <span class="star-container" ng-show="false">
+            <span class="glyphicon"
+                 ng-repeat="star in starsEarned"
+                 ng-class="{
+                        'solved-icon glyphicon-star': star.earned,
+                        'unsolved-icon glyphicon-star-empty': !star.earned
+                    }"></span>
+        </span>
+
+        <span class="solved-label">Solved</span>
     </div>
     <div class="board">
         <div class="board-square"
@@ -19,7 +34,16 @@
              ng-class="{selected: square.selected}">&nbsp;</div>
     </div>
 </div>
-<div class="text-center"><span class="badge">Moves Left: {{gameState.movesLeft}}</span></div>
+<div class="text-center">
+    <button type="button" class="btn btn-default btn-lg" ng-click="showMenu()">
+        <span class="glyphicon glyphicon-home"></span>
+    </button>
+    <span class="badge" ng-show="isShowSolved()">Your Best: {{gameState.bestSolution}} Moves</span>
+    <span class="badge" ng-show="!isShowSolved()">Moves Left: {{gameState.movesLeft}}</span>
+    <button type="button" class="btn btn-default btn-lg" ng-disabled="gameState.isLevelLocked" ng-click="replay()">
+        <span class="glyphicon glyphicon-refresh"></span>
+    </button>
+</div>
 
 <script type="text/ng-template" id="modal.html">
     <div class="modal-header">
