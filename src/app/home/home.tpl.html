@@ -15,10 +15,9 @@
     <div class="overlay" ng-show="isShowSolved()">
         <span class="solved-background"></span>
 
-        <!-- TODO: Show stars once the calculation of stars earned is implemented! -->
-        <span class="star-container" ng-show="false">
+        <span class="star-container">
             <span class="glyphicon"
-                 ng-repeat="star in starsEarned"
+                 ng-repeat="star in gameState.starsEarned"
                  ng-class="{
                         'solved-icon glyphicon-star': star.earned,
                         'unsolved-icon glyphicon-star-empty': !star.earned

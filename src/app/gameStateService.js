@@ -8,6 +8,11 @@ angular.module( 'meg.gameStateService', [
         model: {
             // Properties reset on page refresh
             bestSolution: 999,
+            starsEarned: [
+                { id: 0, earned: false},
+                { id: 1, earned: false},
+                { id: 2, earned: false}
+            ],
             movesTaken: 0,
             movesLeft: 15,
             squares: [],
