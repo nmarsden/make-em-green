@@ -1,0 +1,79 @@
+<div class="text-center">
+  <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.selectedLevel === 1" (click)="selectPreviousLevel()">
+    <span class="icon icon-caret-left"></span>
+  </button>
+  <span class="badge">Level {{gameState.selectedLevel}}</span>
+  <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.selectedLevel === 100" (click)="selectNextLevel()">
+    <span class="icon icon-caret-right"></span>
+  </button>
+</div>
+<div class="board-container noselect">
+  <div class="overlay"
+       *ngIf="gameState.isLevelLocked"
+       [@fadeIn]="in">
+    <span class="lock-container">
+      <span class="icon icon-lock lock-icon"></span>
+    </span>
+    <span class="lock-label">Locked</span>
+  </div>
+  <div class="overlay"
+       *ngIf="isShowSolved()"
+       [@fadeIn]="in">
+    <span class="solved-background"></span>
+
+    <span class="star-container">
+            <span class="icon icon-large"
+                  *ngFor="let star of gameState.starsEarned"
+                  [ngClass]="{
+                        'icon-star': star.earned,
+                        'icon-star-outline': !star.earned
+                    }"></span>
+        </span>
+
+    <span class="solved-label">Solved</span>
+  </div>
+  <div class="board">
+    <div class="board-square"
+         *ngFor="let square of gameState.squares; let i=index"
+         [@flipIn]="square.state"
+         (click)="clickSquare(i)"
+         [class.selected]="square.selected">
+      <span class="icon icon-medium"
+            [ngClass]="{
+                  'icon-smile': square.selected,
+                  'icon-frown': !square.selected
+            }">
+      </span>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <button type="button" class="btn btn-default btn-lg" (click)="showMenu()">
+    <span class="icon icon-home"></span>
+  </button>
+  <span class="badge" *ngIf="isShowSolved()">Your Best: {{gameState.bestSolution}} Moves</span>
+  <span class="badge" *ngIf="!isShowSolved()">Moves Left: {{gameState.movesLeft}}</span>
+  <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.isLevelLocked" (click)="replay()">
+    <span class="icon icon-refresh"></span>
+  </button>
+</div>
+
+<div *ngIf="isShowModal" class="modal-backdrop"></div>
+<div *ngIf="isShowModal"
+     [@slideIn]="in"
+     class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">{{modalContents.title}}</div>
+      </div>
+      <div class="modal-body">
+        {{modalContents.message}}
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="modalContents.okHandler()">{{modalContents.okText}}</button>
+        <button class="btn btn-warning" (click)="modalContents.cancelHandler()">{{modalContents.cancelText}}</button>
+      </div>
+    </div>
+  </div>
+</div>

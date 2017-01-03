@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html ng-app="makeEmGreen" ng-controller="AppCtrl">
-  <head>
-    <title>Make Em Green</title>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MakeEmGreen</title>
+  <base href="/">
 
-    <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
-
-    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="<%= file %>"></script><% }); %>
-
-  </head>
-  <body>
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Make 'em <span class="greenHighlight">Green</span></h1>
-            <span class="version">v<%= version %></span>
-        </div>
-        <div ui-view="main"></div>
-    </div>
-  </body>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root>Loading...</app-root>
+</body>
 </html>
