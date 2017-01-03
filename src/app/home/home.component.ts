@@ -492,4 +492,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  mouseEnterSquare (squareIndex) {
+    this.setSquareHoverState(squareIndex, true);
+  }
+
+  mouseLeaveSquare (squareIndex) {
+    this.setSquareHoverState(squareIndex, false);
+  }
+
+  setSquareHoverState (squareIndex, isHover) {
+    let toggleIndexes = this.calcSquaresToToggle(squareIndex),
+      i = 0,
+      len = toggleIndexes.length;
+    for (; i < len; i++) {
+      let toggleIndex = toggleIndexes[i];
+      this.gameState.squares[toggleIndex].hover = isHover;
+    }
+  }
+
 }

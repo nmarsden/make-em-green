@@ -306,11 +306,10 @@
   position: relative;
   cursor: pointer;
 
-  &:hover {
-    -webkit-transform: scale(1.1) rotate(2deg);
-    -moz-transform: scale(1.1) rotate(2deg);
-    -o-transform: scale(1.1) rotate(2deg);
-    transform: scale(1.1) rotate(2deg);
+  &.hover {
+    -webkit-box-shadow: 0 0 15px 5px #3053ff;
+    -moz-box-shadow: 0 0 15px 5px #3053ff;
+    box-shadow: 0 0 15px 5px #3053ff;
   }
 
   &.selected {
