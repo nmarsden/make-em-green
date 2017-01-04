@@ -1,6 +1,7 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
-import {GameStateService} from "./services/game-state.service";
-import {SoundService} from "./services/sound.service";
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { GameStateService } from "./services/game-state.service";
+import { SoundService } from "./services/sound.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private gameStateService: GameStateService,
-    private soundService: SoundService
+    private soundService: SoundService,
+    private router: Router
   ) {
 
   }
@@ -35,6 +37,14 @@ export class AppComponent implements OnInit {
     window.onbeforeunload = () => {
       this.gameStateService.saveState();
     };
+  }
+
+  showMenu () {
+    this.router.navigate(['/']);
+  }
+
+  showInfo() {
+    this.router.navigate(['/info']);
   }
 
   toggleSound() {

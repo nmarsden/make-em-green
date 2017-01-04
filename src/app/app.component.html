@@ -1,6 +1,7 @@
 <div class="container">
   <div class="jumbotron">
-    <h1>Make 'em <span class="greenHighlight">Green</span></h1>
+    <div (click)="showInfo()" class="info"></div>
+    <div (click)="showMenu()" class="heading">Make 'em <span class="greenHighlight">Green</span></div>
     <div (click)="toggleSound()"
          class="sound"
          [class.sound-on]="gameState.isSoundOn"
