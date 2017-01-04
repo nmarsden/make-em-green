@@ -1,6 +1,10 @@
 <div class="container">
   <div class="jumbotron">
     <h1>Make 'em <span class="greenHighlight">Green</span></h1>
+    <div (click)="toggleSound()"
+         class="sound"
+         [class.sound-on]="gameState.isSoundOn"
+         [class.sound-off]="!gameState.isSoundOn"></div>
     <span class="version">v0.0.3</span>
   </div>
   <router-outlet></router-outlet>

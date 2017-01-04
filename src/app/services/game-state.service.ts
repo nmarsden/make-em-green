@@ -20,15 +20,12 @@ export class GameStateService {
       isLevelLocked: false,
       isLevelSolved: false,
       isReplay: false,
+      isSoundOn: true,
 
       // Properties saved to local storage
       selectedLevel: 1,  // values in range: 1 to 100
       bestSolutions: []
     };
-
-    // TODO call saveState and restoreState where appropriate instead of using events?
-    // $rootScope.$on("savestate", this.saveState);
-    // $rootScope.$on("restorestate", this.restoreState);
   }
 
   getGameState() {

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 
 import { GameStateService } from './services/game-state.service';
+import { SoundService } from "./services/sound.service";
 
 import { routing } from './app.routes';
 
@@ -24,7 +25,8 @@ import { routing } from './app.routes';
     routing
   ],
   providers: [
-    GameStateService
+    GameStateService,
+    SoundService
   ],
   bootstrap: [
     AppComponent

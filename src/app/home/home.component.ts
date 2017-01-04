@@ -1,6 +1,7 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { Router } from "@angular/router";
 import { GameStateService } from "../services/game-state.service";
+import {SoundService} from "../services/sound.service";
 
 @Component({
   selector: 'app-home',
@@ -67,7 +68,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private gameStateService : GameStateService
+    private gameStateService : GameStateService,
+    private soundService: SoundService
   ) {
 
     let puz = [];
@@ -319,6 +321,8 @@ export class HomeComponent implements OnInit {
   }
 
   initBoard () {
+    this.soundService.playFlipSound();
+
     this.initSquares(this.gameState.selectedLevel);
     this.gameState.movesTaken = 0;
     this.gameState.movesLeft = 15;
@@ -408,7 +412,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // TODO ensure initLevel is called whenever gameState.selectedLevel changes
   initLevel (selectedLevel) {
     this.gameState.isLevelLocked = (selectedLevel > (this.bestSolutions.length + 1));
 
@@ -424,6 +427,8 @@ export class HomeComponent implements OnInit {
   }
 
   gameLost () {
+    this.soundService.playLostSound();
+
     this.showModal({
       title: "No Moves Left!",
       message: "I know you can do this. Give it another go?",
@@ -450,6 +455,8 @@ export class HomeComponent implements OnInit {
   }
 
   gameWon () {
+    this.soundService.playWonSound();
+
     this.updateBestSolutions();
     this.showModal({
       title: "Level Solved",
@@ -473,6 +480,8 @@ export class HomeComponent implements OnInit {
   }
 
   clickSquare (index) {
+    this.soundService.playFlipSound();
+
     let toggleIndexes = this.calcSquaresToToggle(index),
       i = 0,
       len = toggleIndexes.length;
@@ -493,6 +502,8 @@ export class HomeComponent implements OnInit {
   }
 
   mouseEnterSquare (squareIndex) {
+    this.soundService.playHoverSound();
+
     this.setSquareHoverState(squareIndex, true);
   }
 
