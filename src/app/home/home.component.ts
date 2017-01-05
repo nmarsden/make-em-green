@@ -8,38 +8,6 @@ import {SoundService} from "../services/sound.service";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less'],
   animations: [
-    trigger('flipIn', [
-      state('selected1', style({})),
-      state('selected2', style({})),
-      state('selected3', style({})),
-      state('unselected1', style({})),
-      state('unselected2', style({})),
-      state('unselected3', style({})),
-      transition('* => selected1', [
-        style({transform: 'rotateZ(90deg) rotateY(90deg)'}),
-        animate('300ms ease-out')
-      ]),
-      transition('* => unselected1', [
-        style({transform: 'rotateZ(-90deg) rotateY(-90deg)'}),
-        animate('300ms ease-out')
-      ]),
-      transition('* => selected2', [
-        style({transform: 'rotateZ(90deg) rotateY(90deg)'}),
-        animate('600ms ease-out')
-      ]),
-      transition('* => unselected2', [
-        style({transform: 'rotateZ(-90deg) rotateY(-90deg)'}),
-        animate('600ms ease-out')
-      ]),
-      transition('* => selected3', [
-        style({transform: 'rotateZ(180deg) rotateY(180deg)'}),
-        animate('1200ms ease-out')
-      ]),
-      transition('* => unselected3', [
-        style({transform: 'rotateZ(-180deg) rotateY(-180deg)'}),
-        animate('1200ms ease-out')
-      ]),
-    ]),
     trigger('fadeIn', [
       state('in', style({})),
       transition('void => *', [
@@ -309,6 +277,10 @@ export class HomeComponent implements OnInit {
       square.state = this.getStateWithRandomNum(square.selected ? 'selected' : 'unselected');
       return square;
     });
+  }
+
+  squareTrackByFn(index, square) {
+    return square.id;
   }
 
   getStateWithRandomNum(state) {

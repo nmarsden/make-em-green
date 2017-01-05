@@ -33,20 +33,20 @@
     <span class="solved-label">Solved</span>
   </div>
   <div class="board">
-    <div class="board-square"
-         *ngFor="let square of gameState.squares; let i=index"
-         [@flipIn]="square.state"
+    <div class="flip-card-container board-square-container"
+         *ngFor="let square of gameState.squares; let i=index; trackBy:squareTrackByFn"
          (click)="clickSquare(i)"
          (mouseenter)="mouseEnterSquare(i)"
          (mouseleave)="mouseLeaveSquare(i)"
-         [class.selected]="square.selected"
-         [class.hover]="square.hover">
-      <span class="icon icon-medium"
-            [ngClass]="{
-                  'icon-smile': square.selected,
-                  'icon-frown': !square.selected
-            }">
-      </span>
+         [class.show-card-back]="!square.selected">
+      <div class="flip-card">
+        <div class="flip-card-front board-square board-square--green" [class.hover]="square.hover">
+          <span class="icon icon-medium icon-smile" ></span>
+        </div>
+        <div class="flip-card-back board-square board-square--red" [class.hover]="square.hover">
+          <span class="icon icon-medium icon-frown"></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

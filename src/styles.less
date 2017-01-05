@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+// ---------- flip-card ----------
+
+// entire container, keeps perspective
+.flip-card-container {
+  perspective: 1000px;
+}
+
+// flip the pane when show-card-back
+.flip-card-container.show-card-back {
+
+  .flip-card {
+    transform: rotateY(180deg);
+  }
+}
+
+// flip speed goes here
+.flip-card {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+// hide back of pane during swap
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+// front pane, placed above back
+.flip-card-front {
+  z-index: 2;
+  transform: rotateY(0deg); // for firefox 31
+}
+
+// back, initially hidden pane
+.flip-card-back {
+  transform: rotateY(180deg);
+}
