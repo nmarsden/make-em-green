@@ -1,13 +1,21 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate, AnimationTransitionEvent } from '@angular/core';
 import { Router } from "@angular/router";
 import { GameStateService } from "../services/game-state.service";
-import {SoundService} from "../services/sound.service";
+import { SoundService } from "../services/sound.service";
+import { routerTransition } from '../app.routes.animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less'],
+  host: {
+    '[@routerTransition]': '',
+    '(@routerTransition.start)': 'routerAnimationStarted($event)',
+    '(@routerTransition.done)': 'routerAnimationDone($event)',
+    '[style.display]': "'block'"
+  },
   animations: [
+    routerTransition(),
     trigger('fadeIn', [
       state('in', style({})),
       transition('void => *', [
@@ -255,6 +263,18 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  routerAnimationStarted($event: AnimationTransitionEvent) {
+    if ($event.toState === 'void') {
+      this.gameState.isRouteLeaveAnimationInProgress = true;
+    }
+  }
+
+  routerAnimationDone($event: AnimationTransitionEvent) {
+    if ($event.toState === 'void') {
+      this.gameState.isRouteLeaveAnimationInProgress = false;
+    }
   }
 
   showMenu () {

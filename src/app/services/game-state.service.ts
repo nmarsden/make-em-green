@@ -8,6 +8,7 @@ export class GameStateService {
   constructor() {
     this.model = {
       // Properties reset on page refresh
+      isRouteLeaveAnimationInProgress: false,
       bestSolution: 999,
       starsEarned: [
         {id: 0, earned: false},
@@ -38,13 +39,11 @@ export class GameStateService {
       bestSolutions: this.model.bestSolutions
     };
     (localStorage as any).gameStateService = JSON.stringify(state);
-    // localStorage.gameStateService = angular.toJson(state);
   }
 
   restoreState() {
     if ((localStorage as any).gameStateService) {
       let state = JSON.parse((localStorage as any).gameStateService);
-      // var state = angular.fromJson(localStorage.gameStateService);
       this.model.selectedLevel = state.selectedLevel;
       this.model.bestSolutions = state.bestSolutions;
     }

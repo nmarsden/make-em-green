@@ -1,4 +1,5 @@
-<div class="well well-lg">
+<div *ngIf="!gameState.isRouteLeaveAnimationInProgress"
+     class="well well-lg">
     <p class="lead">In a world where there are <span class="highlight unselected">non-green</span> blocks, you have been tasked with making them all <span class="highlight selected">green</span>!</p>
     <button class="btn btn-default btn-block btn-start" [routerLink]="['/home']">Start</button>
 </div>
