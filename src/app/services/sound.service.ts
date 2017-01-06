@@ -16,12 +16,12 @@ export class SoundService {
     this.setMute(!isSoundOn);
 
     this.highlight = new Howl({
-      src: ['../../assets/sounds/highlight.mp3'],
+      src: ['assets/sounds/highlight.mp3'],
       volume: 0.3
     });
-    this.flip = new Howl({ src: ['../../assets/sounds/flip.mp3'] });
+    this.flip = new Howl({ src: ['assets/sounds/flip.mp3'] });
     this.menuSounds = new Howl({
-      src: ['../../assets/sounds/menu-sounds.mp3'],
+      src: ['assets/sounds/menu-sounds.mp3'],
       sprite: {
         hover: [847, (1390 - 847)],
         won: [5815, (8672 - 5815)],
@@ -29,11 +29,11 @@ export class SoundService {
       }
     });
     this.transition = new Howl({
-      src: ['../../assets/sounds/transition.mp3'],
+      src: ['assets/sounds/transition.mp3'],
       rate: 2
     });
     this.backgroundTrack = new Howl({
-      src: ['../../assets/sounds/sky-loop.mp3'],
+      src: ['assets/sounds/sky-loop.mp3'],
       loop: true,
       autoplay: false
     })
