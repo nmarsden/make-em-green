@@ -1,6 +1,7 @@
 import { Component, OnInit, AnimationTransitionEvent } from '@angular/core';
 import { routerTransition } from '../app.routes.animations';
 import { GameStateService } from "../services/game-state.service";
+import { SoundService } from "../services/sound.service";
 
 @Component({
   selector: 'app-info',
@@ -20,7 +21,7 @@ export class InfoComponent implements OnInit {
 
   private gameState;
 
-  constructor(private gameStateService: GameStateService) {
+  constructor(private gameStateService: GameStateService, private soundService: SoundService) {
     this.gameState = this.gameStateService.getGameState();
   }
 
@@ -29,6 +30,7 @@ export class InfoComponent implements OnInit {
 
   routerAnimationStarted($event: AnimationTransitionEvent) {
     if ($event.toState === 'void') {
+      this.soundService.playTransitionSound();
       this.gameState.isRouteLeaveAnimationInProgress = true;
     }
   }
@@ -39,4 +41,7 @@ export class InfoComponent implements OnInit {
     }
   }
 
+  playHoverSound() {
+    this.soundService.playHoverSound();
+  }
 }

@@ -7,6 +7,7 @@ export class SoundService {
   private highlight: Howl;
   private flip: Howl;
   private menuSounds: Howl;
+  private transition: Howl;
   private backgroundTrack: Howl;
 
   constructor() { }
@@ -26,6 +27,10 @@ export class SoundService {
         won: [5815, (8672 - 5815)],
         lost: [12190, (13410 - 12190)]
       }
+    });
+    this.transition = new Howl({
+      src: ['../../assets/sounds/transition.mp3'],
+      rate: 2
     });
     this.backgroundTrack = new Howl({
       src: ['../../assets/sounds/sky-loop.mp3'],
@@ -55,6 +60,11 @@ export class SoundService {
   playLostSound() {
     this.menuSounds.volume(0.2);
     this.menuSounds.play('lost');
+  }
+
+  playTransitionSound() {
+    this.transition.play();
+    this.transition.fade(1,0.5,2);
   }
 
   setMute(isMuted) {

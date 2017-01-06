@@ -34,6 +34,7 @@ import { routerTransition } from '../app.routes.animations';
 })
 export class HomeComponent implements OnInit {
 
+  private isOnInitTriggered: boolean;
   private puzzles;
   private solutions;
   private gameState;
@@ -258,15 +259,19 @@ export class HomeComponent implements OnInit {
     this.squares = this.gameState.squares;
     this.bestSolutions = this.gameState.bestSolutions;
 
+    this.isOnInitTriggered = false;
+
     this.initLevel(this.gameState.selectedLevel);
     this.initBoard();
   }
 
   ngOnInit() {
+    this.isOnInitTriggered = true;
   }
 
   routerAnimationStarted($event: AnimationTransitionEvent) {
     if ($event.toState === 'void') {
+      this.soundService.playTransitionSound();
       this.gameState.isRouteLeaveAnimationInProgress = true;
     }
   }
@@ -313,7 +318,9 @@ export class HomeComponent implements OnInit {
   }
 
   initBoard () {
-    this.soundService.playFlipSound();
+    if (this.isOnInitTriggered) {
+      this.soundService.playFlipSound();
+    }
 
     this.initSquares(this.gameState.selectedLevel);
     this.gameState.movesTaken = 0;
@@ -491,6 +498,10 @@ export class HomeComponent implements OnInit {
     else if (this.gameState.movesLeft === 0) {
       this.gameLost();
     }
+  }
+
+  playHoverSound() {
+    this.soundService.playHoverSound();
   }
 
   mouseEnterSquare (squareIndex) {
