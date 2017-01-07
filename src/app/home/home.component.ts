@@ -19,14 +19,18 @@ import { routerTransition } from '../app.routes.animations';
     trigger('fadeIn', [
       state('in', style({})),
       transition('void => *', [
-        style({opacity: 0}),
+        style({ opacity: 0 }),
         animate('400ms')
       ])
     ]),
     trigger('slideIn', [
       state('in', style({})),
       transition('void => *', [
-        style({opacity: 0, transform: 'translateY(-100%)'}),
+        style({
+          opacity: 0,
+          '-webkit-transform': 'translateY(-100%)',
+          transform: 'translateY(-100%)'
+        }),
         animate('500ms cubic-bezier(0.175, 0.885, 0.32, 1.275)')
       ])
     ])
