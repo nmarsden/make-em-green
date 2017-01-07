@@ -28,7 +28,7 @@ import { routerTransition } from '../app.routes.animations';
       transition('void => *', [
         style({
           opacity: 0,
-          '-webkit-transform': 'translateY(-100%)',
+          WebkitTransform: 'translateY(-100%)',
           transform: 'translateY(-100%)'
         }),
         animate('500ms cubic-bezier(0.175, 0.885, 0.32, 1.275)')
