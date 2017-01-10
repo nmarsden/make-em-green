@@ -7,28 +7,20 @@ export function routerTransition() {
 function rotateInOut() {
   return trigger('routerTransition', [
     state('void', style({
-      opacity: 0,
-      webkitTransform: 'rotateX(-90deg)',
-      transform: 'rotateX(-90deg)'
+      opacity: 0
     })),
     state('*', style({
-      opacity: 1,
-      webkitTransform: 'rotateX(0deg)',
-      transform: 'rotateX(0deg)'
+      opacity: 1
     })),
     transition(':enter', [
       // Note: delay the 'enter' animation, so that the previous route's 'leave' animation has time to complete
       animate('0.5s 0.5s ease-in-out', style({
-        opacity: 1,
-        webkitTransform: 'rotateX(0deg)',
-        transform: 'rotateX(0deg)'
+        opacity: 1
       }))
     ]),
     transition(':leave', [
       animate('0.5s ease-in-out', style({
-        opacity: 0,
-        webkitTransform: 'rotateX(-90deg)',
-        transform: 'rotateX(-90deg)'
+        opacity: 0
       }))
     ])
   ]);
