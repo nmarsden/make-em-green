@@ -29,6 +29,8 @@ export class MenuComponent implements OnInit {
   }
 
   routerAnimationStarted($event: AnimationTransitionEvent) {
+    console.log(`menu: [routerAnimationStarted] $event.toState=${$event.toState}`);
+
     if ($event.toState === 'void') {
       this.soundService.playTransitionSound();
       this.gameState.isRouteLeaveAnimationInProgress = true;
@@ -36,6 +38,8 @@ export class MenuComponent implements OnInit {
   }
 
   routerAnimationDone($event: AnimationTransitionEvent) {
+    console.log(`menu: [routerAnimationDone] $event.toState=${$event.toState}`);
+
     if ($event.toState == 'void') {
       this.gameState.isRouteLeaveAnimationInProgress = false;
     }
