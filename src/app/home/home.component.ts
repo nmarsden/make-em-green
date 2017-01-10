@@ -272,6 +272,8 @@ export class HomeComponent implements OnInit {
   }
 
   routerAnimationStarted($event: AnimationTransitionEvent) {
+    console.log(`home: [routerAnimationStarted] $event.toState={$event.toState}`);
+
     if ($event.toState === 'void') {
       this.soundService.playTransitionSound();
       this.gameState.isRouteLeaveAnimationInProgress = true;
@@ -279,6 +281,8 @@ export class HomeComponent implements OnInit {
   }
 
   routerAnimationDone($event: AnimationTransitionEvent) {
+    console.log(`home: [routerAnimationDone] $event.toState={$event.toState}`);
+
     if ($event.toState === 'void') {
       this.gameState.isRouteLeaveAnimationInProgress = false;
     }
