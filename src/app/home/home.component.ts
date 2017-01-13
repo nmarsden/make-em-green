@@ -10,8 +10,6 @@ import { routerTransition } from '../app.routes.animations';
   styleUrls: ['./home.component.less'],
   host: {
     '[@routerTransition]': '',
-    '(@routerTransition.start)': 'routerAnimationStarted($event)',
-    '(@routerTransition.done)': 'routerAnimationDone($event)',
     '[style.display]': "'block'"
   },
   animations: [
@@ -269,23 +267,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isOnInitTriggered = true;
-  }
-
-  routerAnimationStarted($event: AnimationTransitionEvent) {
-    console.log(`home: [routerAnimationStarted] $event.toState=${$event.toState}`);
-
-    if ($event.toState === 'void') {
-      this.soundService.playTransitionSound();
-      this.gameState.isRouteLeaveAnimationInProgress = true;
-    }
-  }
-
-  routerAnimationDone($event: AnimationTransitionEvent) {
-    console.log(`home: [routerAnimationDone] $event.toState=${$event.toState}`);
-
-    if ($event.toState === 'void') {
-      this.gameState.isRouteLeaveAnimationInProgress = false;
-    }
   }
 
   showMenu () {

@@ -1,7 +1,7 @@
 import { Component, OnInit, AnimationTransitionEvent } from '@angular/core';
 import { routerTransition } from '../app.routes.animations';
-import { GameStateService } from "../services/game-state.service";
 import { SoundService } from "../services/sound.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-menu',
@@ -9,8 +9,6 @@ import { SoundService } from "../services/sound.service";
   styleUrls: ['./menu.component.less'],
   host: {
     '[@routerTransition]': '',
-    '(@routerTransition.start)': 'routerAnimationStarted($event)',
-    '(@routerTransition.done)': 'routerAnimationDone($event)',
     '[style.display]': "'block'"
   },
   animations: [
@@ -19,30 +17,17 @@ import { SoundService } from "../services/sound.service";
 })
 export class MenuComponent implements OnInit {
 
-  private gameState;
-
-  constructor(private gameStateService: GameStateService, private soundService: SoundService) {
-    this.gameState = gameStateService.getGameState();
+  constructor(
+    private router: Router,
+    private soundService: SoundService) {
   }
 
   ngOnInit() {
   }
 
-  routerAnimationStarted($event: AnimationTransitionEvent) {
-    console.log(`menu: [routerAnimationStarted] $event.toState=${$event.toState}`);
-
-    if ($event.toState === 'void') {
-      this.soundService.playTransitionSound();
-      this.gameState.isRouteLeaveAnimationInProgress = true;
-    }
-  }
-
-  routerAnimationDone($event: AnimationTransitionEvent) {
-    console.log(`menu: [routerAnimationDone] $event.toState=${$event.toState}`);
-
-    if ($event.toState == 'void') {
-      this.gameState.isRouteLeaveAnimationInProgress = false;
-    }
+  showHome () {
+    this.soundService.playTransitionSound();
+    this.router.navigate(['/home']);
   }
 
   playHoverSound() {

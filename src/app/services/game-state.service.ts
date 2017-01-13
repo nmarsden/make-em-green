@@ -8,7 +8,6 @@ export class GameStateService {
   constructor() {
     this.model = {
       // Properties reset on page refresh
-      isRouteLeaveAnimationInProgress: false,
       bestSolution: 999,
       starsEarned: [
         {id: 0, earned: false},

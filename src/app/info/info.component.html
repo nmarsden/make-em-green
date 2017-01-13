@@ -1,32 +1,35 @@
-<div *ngIf="!gameState.isRouteLeaveAnimationInProgress"
-     class="page">
-  <div>
-    <div class="make-em-green-logo">
-      <div class="tile tile-green"></div>
-      <div class="tile tile-green"></div>
-      <div class="tile tile-green"></div>
-      <div class="tile tile-red"></div>
+<div class="page_content">
+  <div class="info_page">
+    <div>
+      <div class="make-em-green-logo">
+        <div class="tile tile-green"></div>
+        <div class="tile tile-green"></div>
+        <div class="tile tile-green"></div>
+        <div class="tile tile-red"></div>
+      </div>
+      <div class="title">ABOUT</div>
+      <div class="make-em-green-logo">
+        <div class="tile tile-green"></div>
+        <div class="tile tile-green"></div>
+        <div class="tile tile-green"></div>
+        <div class="tile tile-red"></div>
+      </div>
     </div>
-    <div class="title">ABOUT</div>
-    <div class="make-em-green-logo">
-      <div class="tile tile-green"></div>
-      <div class="tile tile-green"></div>
-      <div class="tile tile-green"></div>
-      <div class="tile tile-red"></div>
+    <div class="section-content">
+      Make 'em Green is a <a class="link" (mouseenter)="playHoverSound()" href="https://en.wikipedia.org/wiki/Lights_Out_(game)" target="_blank">lights out</a> clone written by Neil Marsden
     </div>
-  </div>
-  <div class="section-content">
-    Make 'em Green is a <a class="link" (mouseenter)="playHoverSound()" href="https://en.wikipedia.org/wiki/Lights_Out_(game)" target="_blank">lights out</a> clone written by Neil Marsden
-  </div>
-  <div class="section-content">
-    The code can be found on <a class="logo logo-github" (mouseenter)="playHoverSound()" href="https://github.com/nmarsden/make-em-green" target="_blank"></a>
-  </div>
-  <div class="section-heading">Built with:</div>
-  <div class="section-content">
-    <a class="logo logo-angular" (mouseenter)="playHoverSound()" href="https://angular.io/" target="_blank"></a>
-    <a class="logo logo-typescript" (mouseenter)="playHoverSound()" href="https://www.typescriptlang.org/" target="_blank"></a>
-    <a class="logo logo-howlerjs" (mouseenter)="playHoverSound()" href="https://howlerjs.com/" target="_blank"></a>
-    <a class="logo logo-fontawesome" (mouseenter)="playHoverSound()" href="https://github.com/encharm/Font-Awesome-SVG-PNG" target="_blank"></a>
-    <a class="logo logo-freesound" (mouseenter)="playHoverSound()" href="https://www.freesound.org" target="_blank"></a>
+    <div class="section-content">
+      The code can be found on <a class="logo logo-github" (mouseenter)="playHoverSound()" href="https://github.com/nmarsden/make-em-green" target="_blank"></a>
+    </div>
+    <div class="section-heading">Built with:</div>
+    <div class="section-content">
+      <div class="logo-container">
+        <a class="logo logo-angular" (mouseenter)="playHoverSound()" href="https://angular.io/" target="_blank"></a>
+        <a class="logo logo-typescript" (mouseenter)="playHoverSound()" href="https://www.typescriptlang.org/" target="_blank"></a>
+        <a class="logo logo-howlerjs" (mouseenter)="playHoverSound()" href="https://howlerjs.com/" target="_blank"></a>
+        <a class="logo logo-fontawesome" (mouseenter)="playHoverSound()" href="https://github.com/encharm/Font-Awesome-SVG-PNG" target="_blank"></a>
+        <a class="logo logo-freesound" (mouseenter)="playHoverSound()" href="https://www.freesound.org" target="_blank"></a>
+      </div>
+    </div>
   </div>
 </div>

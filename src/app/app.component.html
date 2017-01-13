@@ -1,18 +1,19 @@
-<div class="container">
-  <div class="jumbotron">
-    <div (mouseenter)="playHoverSound()"
-         (click)="showInfo()"
-         class="info"></div>
-    <div (mouseenter)="playHoverSound()"
-         (click)="showMenu()"
-         class="heading">Make 'em <span class="greenHighlight">Green</span></div>
-    <div (mouseenter)="playHoverSound()"
-         (click)="toggleSound()"
-         class="sound"
-         [class.sound-on]="gameState.isSoundOn"
-         [class.sound-off]="!gameState.isSoundOn"></div>
-    <span class="version">v0.0.3</span>
+<div class="page">
+  <div class="container">
+    <div class="jumbotron">
+      <div (mouseenter)="playHoverSound()"
+           (click)="showInfo()"
+           class="info"></div>
+      <div (mouseenter)="playHoverSound()"
+           (click)="showMenu()"
+           class="heading">Make 'em <span class="greenHighlight">Green</span></div>
+      <div (mouseenter)="playHoverSound()"
+           (click)="toggleSound()"
+           class="sound"
+           [class.sound-on]="gameState.isSoundOn"
+           [class.sound-off]="!gameState.isSoundOn"></div>
+      <span class="version">v0.0.3</span>
+    </div>
+    <router-outlet></router-outlet>
   </div>
-  <router-outlet></router-outlet>
 </div>
-

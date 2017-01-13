@@ -40,10 +40,12 @@ export class AppComponent implements OnInit {
   }
 
   showMenu () {
+    this.soundService.playTransitionSound();
     this.router.navigate(['/']);
   }
 
   showInfo() {
+    this.soundService.playTransitionSound();
     this.router.navigate(['/info']);
   }
 
