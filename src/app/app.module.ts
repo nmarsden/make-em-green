@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LevelComponent } from './level/level.component';
-import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
 import { InfoComponent } from './info/info.component';
 
 import { routing } from './app.routes';
@@ -18,7 +18,7 @@ import { SoundService } from "./services/sound.service";
   declarations: [
     AppComponent,
     LevelComponent,
-    MenuComponent,
+    HomeComponent,
     InfoComponent
   ],
   imports: [

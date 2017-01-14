@@ -1,12 +1,12 @@
-import { Component, OnInit, AnimationTransitionEvent } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../app.routes.animations';
 import { SoundService } from "../services/sound.service";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.less'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.less'],
   host: {
     '[@routerTransition]': '',
     '[style.display]': "'block'"
@@ -15,7 +15,7 @@ import { Router } from "@angular/router";
     routerTransition()
   ]
 })
-export class MenuComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
