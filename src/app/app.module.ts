@@ -11,6 +11,8 @@ import { InfoComponent } from './info/info.component';
 import { routing } from './app.routes';
 
 import { GameStateService } from './services/game-state.service';
+import { PuzzleService } from './services/puzzle.service';
+import { LevelService } from './services/level.service';
 import { SoundService } from "./services/sound.service";
 
 
@@ -29,6 +31,8 @@ import { SoundService } from "./services/sound.service";
   ],
   providers: [
     GameStateService,
+    PuzzleService,
+    LevelService,
     SoundService
   ],
   bootstrap: [
