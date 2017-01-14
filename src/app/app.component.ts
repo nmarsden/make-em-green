@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     };
   }
 
-  showMenu () {
+  showHome () {
     this.soundService.playTransitionSound();
     this.router.navigate(['/']);
   }

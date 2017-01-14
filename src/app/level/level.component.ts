@@ -271,7 +271,7 @@ export class LevelComponent implements OnInit {
     this.isOnInitTriggered = true;
   }
 
-  showMenu () {
+  showHome () {
     this.soundService.playTransitionSound();
     this.router.navigate(['/']);
   }
@@ -434,7 +434,7 @@ export class LevelComponent implements OnInit {
       okText: "Retry",
       okHandler: this.closeModalAndExecFn(this.replay),
       cancelText: "Quit",
-      cancelHandler: this.closeModalAndExecFn(this.showMenu)
+      cancelHandler: this.closeModalAndExecFn(this.showHome)
     });
   }
 
