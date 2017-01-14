@@ -1,13 +1,13 @@
-import { Component, OnInit, trigger, state, style, transition, animate, AnimationTransitionEvent } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { Router } from "@angular/router";
 import { GameStateService } from "../services/game-state.service";
 import { SoundService } from "../services/sound.service";
 import { routerTransition } from '../app.routes.animations';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less'],
+  selector: 'app-level',
+  templateUrl: './level.component.html',
+  styleUrls: ['./level.component.less'],
   host: {
     '[@routerTransition]': '',
     '[style.display]': "'block'"
@@ -32,7 +32,7 @@ import { routerTransition } from '../app.routes.animations';
     ])
   ]
 })
-export class HomeComponent implements OnInit {
+export class LevelComponent implements OnInit {
 
   private isOnInitTriggered: boolean;
   private puzzles;

@@ -25,9 +25,9 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  showHome () {
+  showLevel () {
     this.soundService.playTransitionSound();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/level']);
   }
 
   playHoverSound() {

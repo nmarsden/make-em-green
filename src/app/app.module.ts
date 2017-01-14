@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { LevelComponent } from './level/level.component';
 import { MenuComponent } from './menu/menu.component';
 import { InfoComponent } from './info/info.component';
 
@@ -17,7 +17,7 @@ import { SoundService } from "./services/sound.service";
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    LevelComponent,
     MenuComponent,
     InfoComponent
   ],
