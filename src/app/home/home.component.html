@@ -20,7 +20,6 @@
     <div class="overlay"
          *ngIf="isShowSolved()"
          [@fadeIn]="in">
-      <span class="solved-background"></span>
 
       <span class="star-container">
               <span class="icon icon-large"
@@ -34,18 +33,26 @@
       <span class="solved-label">Solved</span>
     </div>
     <div class="board">
-      <div class="flip-card-container board-square-container"
-           *ngFor="let square of gameState.squares; let i=index; trackBy:squareTrackByFn"
-           (click)="clickSquare(i)"
-           (mouseenter)="mouseEnterSquare(i)"
-           (mouseleave)="mouseLeaveSquare(i)"
-           [class.show-card-back]="!square.selected">
-        <div class="flip-card">
-          <div class="flip-card-front board-square board-square--green" [class.hover]="square.hover">
-            <span class="icon icon-medium icon-smile" ></span>
-          </div>
-          <div class="flip-card-back board-square board-square--red" [class.hover]="square.hover">
-            <span class="icon icon-medium icon-frown"></span>
+      <div class="board-row" *ngFor="let squares of boardRows; let row=index; trackBy:boardRowTrackByFn">
+        <div class="flip-card-container board-square-container"
+             *ngFor="let square of squares; let col=index; trackBy:squareTrackByFn"
+             (click)="clickSquare(row,col)"
+             (mouseenter)="mouseEnterSquare(row,col)"
+             (mouseleave)="mouseLeaveSquare(row,col)"
+             [class.show-card-back]="!square.selected">
+          <div class="flip-card">
+            <div class="flip-card-front board-square board-square--green"
+                 [class.hover]="square.hover">
+              <div class="board-square-icon-container">
+                <span class="board-square-icon board-square-icon-smile" ></span>
+              </div>
+            </div>
+            <div class="flip-card-back board-square board-square--red"
+                 [class.hover]="square.hover">
+              <div class="board-square-icon-container">
+                <span class="board-square-icon board-square-icon-frown"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

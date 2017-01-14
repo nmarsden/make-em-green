@@ -32,6 +32,13 @@
   left: 0;
 }
 
+.flip-card-front:before,
+.flip-card-back:before {
+  content:'';
+  float: left;
+  padding-top: 100%;
+}
+
 // front pane, placed above back
 .flip-card-front {
   z-index: 2;

@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   private bestSolutions;
   private modalContents;
   private isShowModal = false;
+  private boardRows = [];
 
   constructor(
     private router: Router,
@@ -257,6 +258,7 @@ export class HomeComponent implements OnInit {
 
     this.gameState = gameStateService.getGameState();
     this.squares = this.gameState.squares;
+
     this.bestSolutions = this.gameState.bestSolutions;
 
     this.isOnInitTriggered = false;
@@ -270,6 +272,7 @@ export class HomeComponent implements OnInit {
   }
 
   showMenu () {
+    this.soundService.playTransitionSound();
     this.router.navigate(['/']);
   }
 
@@ -289,6 +292,16 @@ export class HomeComponent implements OnInit {
       square.state = this.getStateWithRandomNum(square.selected ? 'selected' : 'unselected');
       return square;
     });
+    // init. board rows
+    this.boardRows = [];
+    for (let row=0; row<5; row++) {
+      let j = row * 5;
+      this.boardRows.push(this.squares.slice(j, j+5));
+    }
+  }
+
+  boardRowTrackByFn(index) {
+    return index;
   }
 
   squareTrackByFn(index, square) {
@@ -465,7 +478,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  clickSquare (index) {
+  getSquareIndex (row, col) {
+    return (row * 5) + col;
+  }
+
+  clickSquare (row, col) {
+    let index = this.getSquareIndex(row,col);
     this.soundService.playFlipSound();
 
     let toggleIndexes = this.calcSquaresToToggle(index),
@@ -491,13 +509,15 @@ export class HomeComponent implements OnInit {
     this.soundService.playHoverSound();
   }
 
-  mouseEnterSquare (squareIndex) {
+  mouseEnterSquare (row, col) {
+    let squareIndex = this.getSquareIndex(row, col);
     this.soundService.playHoverSound();
 
     this.setSquareHoverState(squareIndex, true);
   }
 
-  mouseLeaveSquare (squareIndex) {
+  mouseLeaveSquare (row, col) {
+    let squareIndex = this.getSquareIndex(row, col);
     this.setSquareHoverState(squareIndex, false);
   }
 
