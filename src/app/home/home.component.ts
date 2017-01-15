@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/level']);
   }
 
-  playHoverSound() {
-    this.soundService.playHoverSound();
+  playBlipSound() {
+    this.soundService.playBlipSound();
   }
 }

@@ -3,7 +3,7 @@
     <div class="well well-lg">
       <p class="lead">In a world where there are <span class="highlight unselected">non-green</span> blocks, you have been tasked with making them all <span class="highlight selected">green</span>!</p>
     </div>
-    <button *ngIf="!isAnySolved" class="btn btn-default btn-block btn-start" (mouseenter)="playHoverSound()" (click)="showLevel(1)">Start</button>
+    <button *ngIf="!isAnySolved" class="btn btn-default btn-block btn-start" (mouseenter)="playBlipSound()" (click)="showLevel(1)">Start</button>
     <div *ngIf="isAnySolved">
       <div class="heading">Select a level</div>
       <div class="levels">
@@ -11,7 +11,7 @@
           <div class="level-container"
                *ngFor="let level of levels; let col=index; trackBy:levelTrackByFn"
                (click)="clickLevel(row,col)"
-               (mouseenter)="playHoverSound()">
+               (mouseenter)="playBlipSound()">
             <div class="level">
               <div class="level-icon-container"
                    [class.level-icon-container-current]="!level.isSolved && !level.isLocked">

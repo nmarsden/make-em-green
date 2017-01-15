@@ -5,6 +5,7 @@ import { Howl } from 'howler';
 export class SoundService {
 
   private highlight: Howl;
+  private blip: Howl;
   private flip: Howl;
   private menuSounds: Howl;
   private transition: Howl;
@@ -19,6 +20,7 @@ export class SoundService {
       src: ['assets/sounds/highlight.mp3'],
       volume: 0.3
     });
+    this.blip = new Howl({ src: ['assets/sounds/blip.mp3'] });
     this.flip = new Howl({ src: ['assets/sounds/flip.mp3'] });
     this.menuSounds = new Howl({
       src: ['assets/sounds/menu-sounds.mp3'],
@@ -60,6 +62,10 @@ export class SoundService {
   playLostSound() {
     this.menuSounds.volume(0.2);
     this.menuSounds.play('lost');
+  }
+
+  playBlipSound() {
+    this.blip.play();
   }
 
   playTransitionSound() {

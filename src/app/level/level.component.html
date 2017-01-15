@@ -1,10 +1,10 @@
 <div class="page_content">
   <div class="text-center">
-    <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.selectedLevel === 1" (mouseenter)="playHoverSound()" (click)="selectPreviousLevel()">
+    <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.selectedLevel === 1" (mouseenter)="playBlipSound()" (click)="selectPreviousLevel()">
       <span class="icon icon-caret-left"></span>
     </button>
     <span class="badge">Level {{gameState.selectedLevel}}</span>
-    <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.selectedLevel === 100" (mouseenter)="playHoverSound()" (click)="selectNextLevel()">
+    <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.selectedLevel === 100" (mouseenter)="playBlipSound()" (click)="selectNextLevel()">
       <span class="icon icon-caret-right"></span>
     </button>
   </div>
@@ -59,12 +59,12 @@
     </div>
   </div>
   <div class="text-center">
-    <button type="button" class="btn btn-default btn-lg" (mouseenter)="playHoverSound()" (click)="showHome()">
+    <button type="button" class="btn btn-default btn-lg" (mouseenter)="playBlipSound()" (click)="showHome()">
       <span class="icon icon-home"></span>
     </button>
     <span class="badge" *ngIf="isShowSolved()">Your Best: {{gameState.bestSolution}} Moves</span>
     <span class="badge" *ngIf="!isShowSolved()">Moves Left: {{gameState.movesLeft}}</span>
-    <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.isLevelLocked" (mouseenter)="playHoverSound()" (click)="replay()">
+    <button type="button" class="btn btn-default btn-lg" [disabled]="gameState.isLevelLocked" (mouseenter)="playBlipSound()" (click)="replay()">
       <span class="icon icon-refresh"></span>
     </button>
   </div>
@@ -82,8 +82,8 @@
           {{modalContents.message}}
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" (mouseenter)="playHoverSound()" (click)="modalContents.okHandler()">{{modalContents.okText}}</button>
-          <button class="btn btn-warning" (mouseenter)="playHoverSound()" (click)="modalContents.cancelHandler()">{{modalContents.cancelText}}</button>
+          <button class="btn btn-primary" (mouseenter)="playBlipSound()" (click)="modalContents.okHandler()">{{modalContents.okText}}</button>
+          <button class="btn btn-warning" (mouseenter)="playBlipSound()" (click)="modalContents.cancelHandler()">{{modalContents.cancelText}}</button>
         </div>
       </div>
     </div>

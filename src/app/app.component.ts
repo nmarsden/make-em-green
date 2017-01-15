@@ -50,11 +50,12 @@ export class AppComponent implements OnInit {
   }
 
   toggleSound() {
+    this.soundService.playHighlightSound();
     this.gameState.isSoundOn = !this.gameState.isSoundOn;
     this.soundService.setMute(!this.gameState.isSoundOn);
   }
 
-  playHoverSound() {
-    this.soundService.playHoverSound();
+  playBlipSound() {
+    this.soundService.playBlipSound();
   }
 }

@@ -1,13 +1,19 @@
 <div class="page">
   <div class="container">
     <div class="jumbotron">
-      <div (mouseenter)="playHoverSound()"
-           (click)="showHome()"
-           class="heading">Make 'em <span class="greenHighlight">Green</span></div>
-      <div (mouseenter)="playHoverSound()"
+      <div class="make-em-green-logo"
+           (mouseenter)="playBlipSound()"
+           (click)="showHome()">
+        <div class="tile tile-green"></div>
+        <div class="tile tile-green"></div>
+        <div class="tile tile-green"></div>
+        <div class="tile tile-red"></div>
+      </div>
+      <div class="heading">Make 'em <span class="greenHighlight">Green</span></div>
+      <div (mouseenter)="playBlipSound()"
            (click)="showInfo()"
            class="info"></div>
-      <div (mouseenter)="playHoverSound()"
+      <div (mouseenter)="playBlipSound()"
            (click)="toggleSound()"
            class="sound"
            [class.sound-on]="gameState.isSoundOn"

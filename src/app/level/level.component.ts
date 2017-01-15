@@ -509,6 +509,10 @@ export class LevelComponent implements OnInit {
     this.soundService.playHoverSound();
   }
 
+  playBlipSound() {
+    this.soundService.playBlipSound();
+  }
+
   mouseEnterSquare (row, col) {
     let squareIndex = this.getSquareIndex(row, col);
     this.soundService.playHoverSound();
