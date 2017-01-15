@@ -195,6 +195,16 @@ p {
 
 .greenHighlight {
   color: greenyellow;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #B6FF00, 0 0 20px #B6FF00, 0 0 30px #B6FF00, 0 0 40px #008000, 0 0 70px #008000, 0 0 80px #008000, 0 0 100px #008000, 0 0 150px #008000;
+  }
+  to {
+    text-shadow: none;
+  }
 }
 
 .make-em-green-logo {
