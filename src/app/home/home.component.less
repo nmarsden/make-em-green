@@ -36,8 +36,10 @@
   display: flex;
   border-radius: 50%;
 
-  &:hover {
-    box-shadow: 0 0 15px 5px #3053ff;
+  @media (hover:hover) {
+    &:hover {
+      box-shadow: 0 0 15px 5px #3053ff;
+    }
   }
 
   &.level-icon-container-current {

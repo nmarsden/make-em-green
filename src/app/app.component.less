@@ -2,7 +2,6 @@
 
 * {
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 body {
@@ -60,9 +59,11 @@ body {
     border-radius: 5px;
     cursor: pointer;
 
-    &:hover {
-      opacity: 0.8;
-      box-shadow: 0 0 15px 5px greenyellow;
+    @media (hover:hover) {
+      &:hover {
+        opacity: 0.8;
+        box-shadow: 0 0 15px 5px greenyellow;
+      }
     }
   }
 }
@@ -129,10 +130,12 @@ p {
   user-select: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 
-  &:hover {
-    color: #333333;
-    text-decoration: none;
-    box-shadow: 0 0 15px 5px #3053ff;
+  @media (hover:hover) {
+    &:hover {
+      color: #333333;
+      text-decoration: none;
+      box-shadow: 0 0 15px 5px #3053ff;
+    }
   }
 
   &:focus {
@@ -154,20 +157,26 @@ p {
   background-color: #ffffff;
   border-color: #cccccc;
 
-  &:hover,
-  &:active {
-    color: #333333;
-    background-color: #ebebeb;
-    border-color: #adadad;
-  }
-
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled]:focus,
-  &[disabled]:active {
+  &[disabled] {
     background-color: #ffffff;
     border-color: #cccccc;
   }
+
+  @media (hover:hover) {
+    &:hover,
+    &:active {
+      color: #333333;
+      background-color: #ebebeb;
+      border-color: #adadad;
+    }
+    &[disabled]:hover,
+    &[disabled]:focus,
+    &[disabled]:active {
+      background-color: #ffffff;
+      border-color: #cccccc;
+    }
+  }
+
 }
 
 .btn-block {
@@ -212,9 +221,11 @@ p {
   opacity: 0.9;
   border-radius: 5px;
 
-  &:hover {
-    opacity: 0.6;
-    box-shadow: 0 0 15px 5px greenyellow;
+  @media (hover:hover) {
+    &:hover {
+      opacity: 0.6;
+      box-shadow: 0 0 15px 5px greenyellow;
+    }
   }
 }
 
@@ -230,9 +241,11 @@ p {
   opacity: 0.9;
   border-radius: 5px;
 
-  &:hover {
-    opacity: 0.6;
-    box-shadow: 0 0 15px 5px greenyellow;
+  @media (hover:hover) {
+    &:hover {
+      opacity: 0.6;
+      box-shadow: 0 0 15px 5px greenyellow;
+    }
   }
 
   &.sound-on {
