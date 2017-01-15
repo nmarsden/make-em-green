@@ -430,6 +430,7 @@ export class LevelComponent implements OnInit {
 
     this.showModal({
       title: "No Moves Left!",
+      starsEarned: [],
       message: "I know you can do this. Give it another go?",
       okText: "Retry",
       okHandler: this.closeModalAndExecFn(this.replay),
@@ -457,8 +458,13 @@ export class LevelComponent implements OnInit {
     this.soundService.playWonSound();
 
     this.updateBestSolutions();
+
+    let numStarsEarned = this.calcNumStarsEarned(this.gameState.selectedLevel, this.gameState.movesTaken);
+    let starsEarned = [numStarsEarned > 0, numStarsEarned > 1, numStarsEarned > 2];
+
     this.showModal({
       title: "Level Solved",
+      starsEarned: starsEarned,
       message: "You are awesome! Ready for the next level?",
       okText: "Next Level",
       okHandler: this.closeModalAndExecFn(this.selectNextLevel),
