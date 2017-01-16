@@ -43,6 +43,7 @@ export class LevelComponent implements OnInit {
   private modalContents;
   private isShowModal = false;
   private boardRows = [];
+  private isBoardShaking = false;
 
   constructor(
     private router: Router,
@@ -321,10 +322,15 @@ export class LevelComponent implements OnInit {
     if (this.isOnInitTriggered) {
       this.soundService.playFlipSound();
     }
-
+    this.shakeBoard();
     this.initSquares(this.gameState.selectedLevel);
     this.gameState.movesTaken = 0;
     this.gameState.movesLeft = 15;
+  }
+
+  shakeBoard() {
+    this.isBoardShaking = true;
+    setTimeout(() => { this.isBoardShaking = false; }, 400 );
   }
 
   replay () {
@@ -491,6 +497,7 @@ export class LevelComponent implements OnInit {
   clickSquare (row, col) {
     let index = this.getSquareIndex(row,col);
     this.soundService.playFlipSound();
+    this.shakeBoard();
 
     let toggleIndexes = this.calcSquaresToToggle(index),
       i = 0,

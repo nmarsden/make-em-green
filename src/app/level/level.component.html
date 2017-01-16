@@ -32,7 +32,8 @@
 
       <span class="solved-label">Solved</span>
     </div>
-    <div class="board">
+    <div class="board"
+         [class.is-shaking]="isBoardShaking">
       <div class="board-row" *ngFor="let squares of boardRows; let row=index; trackBy:boardRowTrackByFn">
         <div class="flip-card-container board-square-container"
              *ngFor="let square of squares; let col=index; trackBy:squareTrackByFn"
