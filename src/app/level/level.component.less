@@ -95,7 +95,7 @@
   max-width: 460px;
   margin: 0 auto;
   will-change: transform;
-  transform-origin: 50% 100%;
+  transform-origin: 50% 50%;
 
   &.is-shaking-0 {
     animation: shake-0 0.3s linear;
@@ -126,6 +126,9 @@
   }
   &.is-shaking-9 {
     animation: shake-9 0.3s linear;
+  }
+  &.is-shaking-10 {
+    animation: shake-10 0.3s linear;
   }
 }
 
@@ -207,6 +210,14 @@
   40% { transform: translate(1px, -1px) rotate(1deg); }
   70% { transform: translate(2px, 1px) rotate(-2deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+// shrink
+@keyframes shake-10 {
+  0% { transform: scale(0.98); }
+  40% { transform: scale(1); }
+  70% { transform: scale(1.02) }
+  100% { transform: scale(1); }
 }
 
 .board-row {

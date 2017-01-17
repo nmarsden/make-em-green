@@ -340,7 +340,9 @@ export class LevelComponent implements OnInit {
   }
 
   shakeBoardForClickedSquare (row, col) {
-    let boardShakeAnimationIndex = BOARD_SHAKE_ANIM_INDEX_LOOKUP[row][col];
+    let boardShakeAnimationIndex = 10;
+    // TODO cleanup unused BOARD_SHAKE_ANIM_INDEX_LOOKUP and other unused board shake related code
+    // let boardShakeAnimationIndex = BOARD_SHAKE_ANIM_INDEX_LOOKUP[row][col];
     this.startShakingBoard(boardShakeAnimationIndex);
   }
 

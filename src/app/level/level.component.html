@@ -42,7 +42,8 @@
          [class.is-shaking-6]="isBoardShaking[6]"
          [class.is-shaking-7]="isBoardShaking[7]"
          [class.is-shaking-8]="isBoardShaking[8]"
-         [class.is-shaking-9]="isBoardShaking[9]">
+         [class.is-shaking-9]="isBoardShaking[9]"
+         [class.is-shaking-10]="isBoardShaking[10]">
       <div class="board-row" *ngFor="let squares of boardRows; let row=index; trackBy:boardRowTrackByFn">
         <div class="flip-card-container board-square-container"
              *ngFor="let square of squares; let col=index; trackBy:squareTrackByFn"
