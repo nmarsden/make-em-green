@@ -21,7 +21,7 @@ export class InfoComponent implements OnInit {
   ngOnInit() {
   }
 
-  playHoverSound() {
-    this.soundService.playHoverSound();
+  playBlipSound() {
+    this.soundService.playBlipSound();
   }
 }

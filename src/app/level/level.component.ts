@@ -4,6 +4,13 @@ import { GameStateService } from "../services/game-state.service";
 import { SoundService } from "../services/sound.service";
 import { routerTransition } from '../app.routes.animations';
 
+const BOARD_SHAKE_ANIM_INDEX_LOOKUP = [];
+BOARD_SHAKE_ANIM_INDEX_LOOKUP[0] = [ 4, 2, 2, 2, 5 ];
+BOARD_SHAKE_ANIM_INDEX_LOOKUP[1] = [ 0, 4, 2, 5, 1 ];
+BOARD_SHAKE_ANIM_INDEX_LOOKUP[2] = [ 0, 0, 8, 1, 1 ];
+BOARD_SHAKE_ANIM_INDEX_LOOKUP[3] = [ 0, 7, 3, 6, 1 ];
+BOARD_SHAKE_ANIM_INDEX_LOOKUP[4] = [ 7, 3, 3, 3, 6 ];
+
 @Component({
   selector: 'app-level',
   templateUrl: './level.component.html',
@@ -43,7 +50,7 @@ export class LevelComponent implements OnInit {
   private modalContents;
   private isShowModal = false;
   private boardRows = [];
-  private isBoardShaking = false;
+  private isBoardShaking = [];
 
   constructor(
     private router: Router,
@@ -322,15 +329,28 @@ export class LevelComponent implements OnInit {
     if (this.isOnInitTriggered) {
       this.soundService.playFlipSound();
     }
-    this.shakeBoard();
+    this.shakeBoardForReset();
     this.initSquares(this.gameState.selectedLevel);
     this.gameState.movesTaken = 0;
     this.gameState.movesLeft = 15;
   }
 
-  shakeBoard() {
-    this.isBoardShaking = true;
-    setTimeout(() => { this.isBoardShaking = false; }, 400 );
+  shakeBoardForReset() {
+    this.startShakingBoard(9);
+  }
+
+  shakeBoardForClickedSquare (row, col) {
+    let boardShakeAnimationIndex = BOARD_SHAKE_ANIM_INDEX_LOOKUP[row][col];
+    this.startShakingBoard(boardShakeAnimationIndex);
+  }
+
+  startShakingBoard(boardShakeAnimationIndex) {
+    this.isBoardShaking[boardShakeAnimationIndex] = true;
+    setTimeout(() => { this.stopShakingBoard() }, 400 );
+  }
+
+  stopShakingBoard() {
+    this.isBoardShaking = this.isBoardShaking.map(() => { return false; });
   }
 
   replay () {
@@ -495,9 +515,9 @@ export class LevelComponent implements OnInit {
   }
 
   clickSquare (row, col) {
+    this.shakeBoardForClickedSquare(row, col);
     let index = this.getSquareIndex(row,col);
     this.soundService.playFlipSound();
-    this.shakeBoard();
 
     let toggleIndexes = this.calcSquaresToToggle(index),
       i = 0,
@@ -518,17 +538,13 @@ export class LevelComponent implements OnInit {
     }
   }
 
-  playHoverSound() {
-    this.soundService.playHoverSound();
-  }
-
   playBlipSound() {
     this.soundService.playBlipSound();
   }
 
   mouseEnterSquare (row, col) {
     let squareIndex = this.getSquareIndex(row, col);
-    this.soundService.playHoverSound();
+    this.soundService.playBlipSound();
 
     this.setSquareHoverState(squareIndex, true);
   }

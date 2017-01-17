@@ -25,7 +25,6 @@ export class SoundService {
     this.menuSounds = new Howl({
       src: ['assets/sounds/menu-sounds.mp3'],
       sprite: {
-        hover: [847, (1390 - 847)],
         won: [5815, (8672 - 5815)],
         lost: [12190, (13410 - 12190)]
       }
@@ -47,11 +46,6 @@ export class SoundService {
 
   playFlipSound() {
     this.flip.play();
-  }
-
-  playHoverSound() {
-    this.menuSounds.volume(1);
-    this.menuSounds.play('hover');
   }
 
   playWonSound() {

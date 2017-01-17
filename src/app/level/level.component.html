@@ -33,7 +33,16 @@
       <span class="solved-label">Solved</span>
     </div>
     <div class="board"
-         [class.is-shaking]="isBoardShaking">
+         [class.is-shaking-0]="isBoardShaking[0]"
+         [class.is-shaking-1]="isBoardShaking[1]"
+         [class.is-shaking-2]="isBoardShaking[2]"
+         [class.is-shaking-3]="isBoardShaking[3]"
+         [class.is-shaking-4]="isBoardShaking[4]"
+         [class.is-shaking-5]="isBoardShaking[5]"
+         [class.is-shaking-6]="isBoardShaking[6]"
+         [class.is-shaking-7]="isBoardShaking[7]"
+         [class.is-shaking-8]="isBoardShaking[8]"
+         [class.is-shaking-9]="isBoardShaking[9]">
       <div class="board-row" *ngFor="let squares of boardRows; let row=index; trackBy:boardRowTrackByFn">
         <div class="flip-card-container board-square-container"
              *ngFor="let square of squares; let col=index; trackBy:squareTrackByFn"
