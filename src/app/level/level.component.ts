@@ -451,6 +451,9 @@ export class LevelComponent implements OnInit {
     this.gameState.starsEarned[0].earned = (numStarsEarned > 0);
     this.gameState.starsEarned[1].earned = (numStarsEarned > 1);
     this.gameState.starsEarned[2].earned = (numStarsEarned > 2);
+
+    // Save selected level
+    this.gameStateService.saveState();
   }
 
   gameLost () {
