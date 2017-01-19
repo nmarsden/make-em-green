@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { GameStateService } from "./services/game-state.service";
 import { SoundService } from "./services/sound.service";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -33,10 +33,12 @@ export class AppComponent implements OnInit {
     // init sounds
     this.soundService.initSounds(this.gameState.isSoundOn);
 
-    // setup event handler to save game state before unload
-    window.onbeforeunload = () => {
-      this.gameStateService.saveState();
-    };
+    // subscribe to router events to save state whenever the route changes
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.gameStateService.saveState();
+      }
+    });
   }
 
   showHome () {

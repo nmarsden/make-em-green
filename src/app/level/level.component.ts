@@ -479,6 +479,8 @@ export class LevelComponent implements OnInit {
       } else {
         this.bestSolutions.push(this.gameState.bestSolution);
       }
+      // Save updated best solutions
+      this.gameStateService.saveState();
     }
   }
 
