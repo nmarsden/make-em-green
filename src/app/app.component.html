@@ -11,9 +11,6 @@
       </div>
       <div class="heading">Make 'em <span class="greenHighlight">Green</span></div>
       <div (mouseenter)="playBlipSound()"
-           (click)="showInfo()"
-           class="info"></div>
-      <div (mouseenter)="playBlipSound()"
            (click)="toggleSound()"
            class="sound"
            [class.sound-on]="gameState.isSoundOn"

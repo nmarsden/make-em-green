@@ -14,6 +14,7 @@ import { GameStateService } from './services/game-state.service';
 import { PuzzleService } from './services/puzzle.service';
 import { LevelService } from './services/level.service';
 import { SoundService } from "./services/sound.service";
+import { SelectLevelComponent } from './select-level/select-level.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SoundService } from "./services/sound.service";
     AppComponent,
     LevelComponent,
     HomeComponent,
-    InfoComponent
+    InfoComponent,
+    SelectLevelComponent
   ],
   imports: [
     BrowserModule,

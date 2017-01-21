@@ -1,0 +1,29 @@
+<div class="page_content">
+  <div class="container">
+    <div>
+      <div class="heading">Select a level</div>
+      <div class="levels">
+        <div class="levels-row" *ngFor="let levels of levelRows; let row=index; trackBy:levelRowTrackByFn">
+          <div class="level-container"
+               *ngFor="let level of levels; let col=index; trackBy:levelTrackByFn"
+               (click)="clickLevel(row,col)"
+               (mouseenter)="playBlipSound()">
+            <div class="level">
+              <div class="level-icon-container"
+                   [class.level-icon-container-current]="!level.isSolved && !level.isLocked">
+                <span [class.level-icon-solved]="level.isSolved"
+                      [class.one-star]="level.numStars === 1"
+                      [class.two-stars]="level.numStars === 2"
+                      [class.three-stars]="level.numStars === 3"
+                      [class.level-icon-locked]="level.isLocked"
+                      [class.level-icon-current]="!level.isSolved && !level.isLocked"
+                      class="level-icon" ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

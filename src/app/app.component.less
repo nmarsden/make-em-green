@@ -162,11 +162,15 @@ p {
   width: 100%;
   padding-left: 0;
   padding-right: 0;
-}
-
-.btn-start {
-  font-size: 55px;
+  font-size: 26px;
   color: white;
+  background-color: #006000;
+
+  @media (hover:hover) {
+    &:hover {
+      background-color: #00A000;
+    }
+  }
 }
 
 .btn-primary {
@@ -239,26 +243,6 @@ p {
       background-color: @unselected-color;
     }
 
-  }
-}
-
-.info {
-  background-size: 30px 30px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 40px;
-  background-image: url(assets/icons/info.svg);
-  background-repeat: no-repeat;
-  border-radius: 5px;
-  opacity: 0.8;
-
-  @media (hover:hover) {
-    &:hover {
-      opacity: 1;
-    }
   }
 }
 

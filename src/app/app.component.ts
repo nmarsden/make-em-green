@@ -46,11 +46,6 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  showInfo() {
-    this.soundService.playTransitionSound();
-    this.router.navigate(['/info']);
-  }
-
   toggleSound() {
     this.soundService.playHighlightSound();
     this.gameState.isSoundOn = !this.gameState.isSoundOn;
