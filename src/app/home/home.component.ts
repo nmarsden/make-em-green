@@ -30,6 +30,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/select-level']);
   }
 
+  showSettings () {
+    this.soundService.playTransitionSound();
+    this.router.navigate(['/settings']);
+  }
+
   showInfo () {
     this.soundService.playTransitionSound();
     this.router.navigate(['/info']);

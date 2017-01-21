@@ -1,4 +1,11 @@
-<div class="page">
+<div class="page"
+     [class.theme-classic]="gameState.theme === 'classic'"
+     [class.theme-cat]="gameState.theme === 'cat'"
+     [class.theme-fruit]="gameState.theme === 'fruit'"
+     [class.theme-reptile]="gameState.theme === 'reptile'"
+     [class.theme-amphibian]="gameState.theme === 'amphibian'"
+     [class.theme-mineral]="gameState.theme === 'mineral'"
+     [class.theme-plant]="gameState.theme === 'plant'">
   <div class="container">
     <div class="jumbotron">
       <div class="make-em-green-logo"

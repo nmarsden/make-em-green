@@ -1,0 +1,20 @@
+<div class="page_content">
+  <div class="container">
+    <div>
+      <div class="heading">Settings</div>
+      <div class="section">
+        <div class="sub-heading">Theme</div>
+        <div class="themes-container">
+          <div class="theme-item"
+               [class.selected]="gameState.theme === theme"
+               *ngFor="let theme of themes">
+            <label>
+              <input type="radio" name="theme" [(ngModel)]="gameState.theme" [value]="theme">
+              <app-theme-option theme="{{ theme }}"></app-theme-option>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

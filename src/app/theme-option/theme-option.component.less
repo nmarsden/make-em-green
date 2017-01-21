@@ -1,0 +1,53 @@
+.theme-option-container {
+  display: inline-block;
+  width: 56px;
+  background: linear-gradient(135deg, #00A000 0%, #006000 100%);
+}
+
+.theme-option {
+  cursor: pointer;
+  width: 56px;
+  height: 56px;
+
+  background-repeat: no-repeat;
+  position: relative;
+  opacity: 0.2;
+
+  background-size: 56px 56px;
+
+  @media (hover:hover) {
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+}
+
+.theme-option-icon {
+  &.theme-classic {
+    background-image: url(assets/icons/smile-o.svg);
+  }
+
+  &.theme-cat {
+    background-image: url(assets/icons/cat-good.svg);
+  }
+
+  &.theme-fruit {
+    background-image: url(assets/icons/fruit-good.svg);
+  }
+
+  &.theme-reptile {
+    background-image: url(assets/icons/reptile-good.svg);
+  }
+
+  &.theme-amphibian {
+    background-image: url(assets/icons/amphibian-good.svg);
+  }
+
+  &.theme-mineral {
+    background-image: url(assets/icons/mineral-good.svg);
+  }
+
+  &.theme-plant {
+    background-image: url(assets/icons/plant-good.svg);
+  }
+}

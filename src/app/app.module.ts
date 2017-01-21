@@ -15,6 +15,8 @@ import { PuzzleService } from './services/puzzle.service';
 import { LevelService } from './services/level.service';
 import { SoundService } from "./services/sound.service";
 import { SelectLevelComponent } from './select-level/select-level.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ThemeOptionComponent } from './theme-option/theme-option.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { SelectLevelComponent } from './select-level/select-level.component';
     LevelComponent,
     HomeComponent,
     InfoComponent,
-    SelectLevelComponent
+    SelectLevelComponent,
+    SettingsComponent,
+    ThemeOptionComponent
   ],
   imports: [
     BrowserModule,

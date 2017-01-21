@@ -281,14 +281,76 @@
     padding-top: 100%;
   }
 
-  &.board-square-icon-smile {
+}
+
+:host-context(.theme-classic) {
+
+  .board-square-icon-good {
     background-image: url(assets/icons/smile-o.svg);
   }
-
-  &.board-square-icon-frown {
+  .board-square-icon-bad {
     background-image: url(assets/icons/frown-o.svg);
   }
+}
 
+:host-context(.theme-cat) {
+
+  .board-square-icon-good {
+    background-image: url(assets/icons/cat-good.svg);
+  }
+  .board-square-icon-bad {
+    background-image: url(assets/icons/cat-bad.svg);
+  }
+}
+
+:host-context(.theme-fruit) {
+
+  .board-square-icon-good {
+    background-image: url(assets/icons/fruit-good.svg);
+  }
+  .board-square-icon-bad {
+    background-image: url(assets/icons/fruit-bad.svg);
+  }
+}
+
+:host-context(.theme-reptile) {
+
+  .board-square-icon-good {
+    background-image: url(assets/icons/reptile-good.svg);
+  }
+  .board-square-icon-bad {
+    background-image: url(assets/icons/reptile-bad.svg);
+  }
+}
+
+:host-context(.theme-amphibian) {
+
+  .board-square-icon-good {
+    background-image: url(assets/icons/amphibian-good.svg);
+  }
+  .board-square-icon-bad {
+    background-image: url(assets/icons/amphibian-bad.svg);
+  }
+}
+
+:host-context(.theme-mineral) {
+
+  .board-square-icon-good {
+    background-image: url(assets/icons/mineral-good.svg);
+  }
+  .board-square-icon-bad {
+    background-image: url(assets/icons/mineral-bad.svg);
+  }
+}
+
+:host-context(.theme-plant) {
+
+  .board-square-icon-good {
+    background-image: url(assets/icons/plant-good.svg);
+  }
+  .board-square-icon-bad {
+    background-image: url(assets/icons/plant-bad.svg);
+  }
 }
 
 .solved-background {
