@@ -7,6 +7,8 @@
         <div class="themes-container">
           <div class="theme-item"
                [class.selected]="gameState.theme === theme"
+               (mouseenter)="playBlipSound()"
+               (click)="clickTheme()"
                *ngFor="let theme of themes">
             <label>
               <input type="radio" name="theme" [(ngModel)]="gameState.theme" [value]="theme">

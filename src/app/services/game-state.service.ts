@@ -21,7 +21,7 @@ export class GameStateService {
       isLevelSolved: false,
       isReplay: false,
       isSoundOn: true,
-      theme: 'plant',
+      theme: 'fruit',
 
       // Properties saved to local storage
       selectedLevel: 1,  // values in range: 1 to 100
