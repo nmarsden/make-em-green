@@ -164,6 +164,7 @@ export class TutorialComponent implements OnInit {
 
   private squares = [];
   private isShowInstructionBubble = false;
+  private instructionsBubbleTimeoutId;
 
   constructor(
     private router: Router,
@@ -176,9 +177,11 @@ export class TutorialComponent implements OnInit {
   }
 
   setupLesson() {
+    // Clear instructions bubble timeout
+    clearTimeout(this.instructionsBubbleTimeoutId);
+
     // Copy current lesson into lesson
     this.lesson = Object.assign({}, this.lessons[this.currentLesson - 1]);
-    // this.lesson = this.lessons[this.currentLesson - 1];
 
     // Default to an empty boardClicked callback when undefined
     if (typeof this.lesson.boardClicked === 'undefined') {
@@ -190,7 +193,7 @@ export class TutorialComponent implements OnInit {
 
     // show the instructions bubble after 3 secs
     this.isShowInstructionBubble = false;
-    setTimeout(() => {
+    this.instructionsBubbleTimeoutId = setTimeout(() => {
       this.isShowInstructionBubble = true;
     }, 3000);
   }

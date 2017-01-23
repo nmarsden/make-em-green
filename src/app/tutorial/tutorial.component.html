@@ -5,12 +5,6 @@
       <div class="section">
         <div class="lesson-title">Lesson {{ currentLesson }}: {{ lesson.title }}</div>
         <div class="lesson-content">{{ lesson.content }}</div>
-        <button *ngIf="currentLesson === lessons.length"
-                class="btn btn-block"
-                (mouseenter)="playBlipSound()"
-                (click)="showSelectLevel()">
-          <div class="icon icon-medium icon-star-outline"></div>Play
-        </button>
         <div class="lesson-nav">
           <button class="btn btn-default"
                [disabled]="currentLesson === 1"
@@ -29,6 +23,12 @@
           <div>{{ lesson.instructions }}</div>
         </div>
       </app-board>
+      <button *ngIf="currentLesson === lessons.length"
+              class="btn btn-block"
+              (mouseenter)="playBlipSound()"
+              (click)="showSelectLevel()">
+        <div class="icon icon-medium icon-star-outline"></div>Play
+      </button>
     </div>
   </div>
 </div>
