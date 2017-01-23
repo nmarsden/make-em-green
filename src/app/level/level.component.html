@@ -8,67 +8,15 @@
       <span class="icon icon-caret-right"></span>
     </button>
   </div>
-  <div class="board-container noselect">
-    <div class="overlay"
-         *ngIf="gameState.isLevelLocked"
-         [@fadeIn]="in">
-      <span class="lock-container">
-        <span class="icon icon-lock lock-icon"></span>
-      </span>
-      <span class="lock-label">Locked</span>
-    </div>
-    <div class="overlay"
-         *ngIf="isShowSolved()"
-         [@fadeIn]="in">
 
-      <span class="star-container">
-              <span class="icon icon-large"
-                    *ngFor="let star of gameState.starsEarned"
-                    [ngClass]="{
-                          'icon-star': star.earned,
-                          'icon-star-outline': !star.earned
-                      }"></span>
-          </span>
+  <app-board
+    [isLevelLocked]="gameState.isLevelLocked"
+    [isShowSolved]="isShowSolved()"
+    [starsEarned]="gameState.starsEarned"
+    [squares]="squares"
+    (onClicked)="boardClicked($event)">
+  </app-board>
 
-      <span class="solved-label">Solved</span>
-    </div>
-    <div class="board"
-         [class.is-shaking-0]="isBoardShaking[0]"
-         [class.is-shaking-1]="isBoardShaking[1]"
-         [class.is-shaking-2]="isBoardShaking[2]"
-         [class.is-shaking-3]="isBoardShaking[3]"
-         [class.is-shaking-4]="isBoardShaking[4]"
-         [class.is-shaking-5]="isBoardShaking[5]"
-         [class.is-shaking-6]="isBoardShaking[6]"
-         [class.is-shaking-7]="isBoardShaking[7]"
-         [class.is-shaking-8]="isBoardShaking[8]"
-         [class.is-shaking-9]="isBoardShaking[9]"
-         [class.is-shaking-10]="isBoardShaking[10]">
-      <div class="board-row" *ngFor="let squares of boardRows; let row=index; trackBy:boardRowTrackByFn">
-        <div class="flip-card-container board-square-container"
-             *ngFor="let square of squares; let col=index; trackBy:squareTrackByFn"
-             (click)="clickSquare(row,col)"
-             (mouseenter)="mouseEnterSquare(row,col)"
-             (mouseleave)="mouseLeaveSquare(row,col)"
-             [class.show-card-back]="!square.selected">
-          <div class="flip-card">
-            <div class="flip-card-front board-square board-square--green"
-                 [class.hover]="square.hover">
-              <div class="board-square-icon-container">
-                <span class="board-square-icon board-square-icon-good"></span>
-              </div>
-            </div>
-            <div class="flip-card-back board-square board-square--red"
-                 [class.hover]="square.hover">
-              <div class="board-square-icon-container">
-                <span class="board-square-icon board-square-icon-bad"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="text-center">
     <button type="button" class="btn btn-default btn-lg" (mouseenter)="playBlipSound()" (click)="showHome()">
       <span class="icon icon-home"></span>
@@ -82,7 +30,7 @@
 
   <div *ngIf="isShowModal" class="modal-backdrop"></div>
   <div *ngIf="isShowModal"
-       [@slideIn]="in"
+       [@fadeInOut]="in"
        class="modal">
     <div class="modal-dialog">
       <div class="modal-content">

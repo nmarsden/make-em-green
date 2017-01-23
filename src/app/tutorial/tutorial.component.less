@@ -1,0 +1,50 @@
+@import (reference) "../app.variables.less";
+
+.heading {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.section {
+  padding: 7px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px black;
+  background-color: @jumbotron-bg-color;
+}
+
+.lesson-title {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.lesson-content {
+
+}
+
+.lesson-nav {
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.instructions-bubble {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  border-radius: 20px;
+  background-color: white;
+  z-index: 1;
+  color: black;
+  padding: 13px;
+  box-shadow: 5px 5px 15px black;
+  opacity: 0;
+  transition: opacity 300ms ease;
+
+  &.is-show-bubble {
+    opacity: 1;
+  }
+}
+

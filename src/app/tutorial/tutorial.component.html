@@ -1,0 +1,34 @@
+<div class="page_content">
+  <div class="container">
+    <div>
+      <div class="heading">Tutorial</div>
+      <div class="section">
+        <div class="lesson-title">Lesson {{ currentLesson }}: {{ lesson.title }}</div>
+        <div class="lesson-content">{{ lesson.content }}</div>
+        <button *ngIf="currentLesson === lessons.length"
+                class="btn btn-block"
+                (mouseenter)="playBlipSound()"
+                (click)="showSelectLevel()">
+          <div class="icon icon-medium icon-star-outline"></div>Play
+        </button>
+        <div class="lesson-nav">
+          <button class="btn btn-default"
+               [disabled]="currentLesson === 1"
+               (click)="previousLesson()">Previous</button>
+          <div class="page-count">{{ currentLesson }} of {{ lessons.length }}</div>
+          <button class="btn btn-default"
+               [disabled]="currentLesson === lessons.length"
+               (click)="nextLesson()">Next</button>
+        </div>
+      </div>
+      <app-board [squares]="squares"
+                 (onClicked)="lesson.boardClicked($event)">
+        <div *ngIf="lesson.instructions"
+             class="instructions-bubble"
+             [class.is-show-bubble]="isShowInstructionBubble">
+          <div>{{ lesson.instructions }}</div>
+        </div>
+      </app-board>
+    </div>
+  </div>
+</div>

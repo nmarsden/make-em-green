@@ -35,6 +35,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/settings']);
   }
 
+  showTutorial () {
+    this.soundService.playTransitionSound();
+    this.router.navigate(['/tutorial']);
+  }
+
   showInfo () {
     this.soundService.playTransitionSound();
     this.router.navigate(['/info']);

@@ -8,7 +8,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #FFFFFF;
+  color: #DDD;
   background-color: #1a2d1a;
   margin: 0;
 }
@@ -140,14 +140,12 @@ p {
     cursor: not-allowed;
     pointer-events: none;
     opacity: 0.65;
-    filter: alpha(opacity=65);
     box-shadow: none;
   }
 
 }
 
 .btn-default {
-  color: #333333;
 
   @media (hover:hover) {
     &:hover,
@@ -273,4 +271,75 @@ p {
     background-image: url(assets/icons/sound-off.svg);
     right: 13px;
   }
+}
+
+.icon {
+  background-size: 36px 36px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: inline-block;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: all 0.5s ease;
+
+  &.icon-medium {
+    display: block;
+    background-size: 60px 60px;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    opacity: 0.8;
+  }
+
+  &.icon-large {
+    background-size: 80px 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  &.icon-caret-left {
+    right: 2px;
+    background-image: url(assets/icons/caret-left.svg);
+  }
+
+  &.icon-caret-right {
+    left: 2px;
+    background-image: url(assets/icons/caret-right.svg);
+  }
+
+  &.icon-home {
+    background-image: url(assets/icons/home.svg);
+  }
+
+  &.icon-refresh {
+    background-image: url(assets/icons/refresh.svg);
+  }
+
+  &.icon-star {
+    cursor: default;
+    background-image: url(assets/icons/star.svg);
+  }
+
+  &.icon-star-outline {
+    cursor: default;
+    background-image: url(assets/icons/star-o.svg);
+  }
+
+  &.icon-lock {
+    background-image: url(assets/icons/lock.svg);
+  }
+
+  &.icon-info {
+    background-image: url(assets/icons/info.svg);
+  }
+
+  &.icon-settings {
+    background-image: url(assets/icons/cog.svg);
+  }
+
+  &.icon-tutorial {
+    background-image: url(assets/icons/tutorial.svg);
+  }
+
 }

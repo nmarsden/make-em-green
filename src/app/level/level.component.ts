@@ -4,13 +4,6 @@ import { GameStateService } from "../services/game-state.service";
 import { SoundService } from "../services/sound.service";
 import { routerTransition } from '../app.routes.animations';
 
-const BOARD_SHAKE_ANIM_INDEX_LOOKUP = [];
-BOARD_SHAKE_ANIM_INDEX_LOOKUP[0] = [ 4, 2, 2, 2, 5 ];
-BOARD_SHAKE_ANIM_INDEX_LOOKUP[1] = [ 0, 4, 2, 5, 1 ];
-BOARD_SHAKE_ANIM_INDEX_LOOKUP[2] = [ 0, 0, 8, 1, 1 ];
-BOARD_SHAKE_ANIM_INDEX_LOOKUP[3] = [ 0, 7, 3, 6, 1 ];
-BOARD_SHAKE_ANIM_INDEX_LOOKUP[4] = [ 7, 3, 3, 3, 6 ];
-
 @Component({
   selector: 'app-level',
   templateUrl: './level.component.html',
@@ -21,14 +14,7 @@ BOARD_SHAKE_ANIM_INDEX_LOOKUP[4] = [ 7, 3, 3, 3, 6 ];
   },
   animations: [
     routerTransition(),
-    trigger('fadeIn', [
-      state('in', style({})),
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate('400ms')
-      ])
-    ]),
-    trigger('slideIn', [
+    trigger('fadeInOut', [
       state('in', style({})),
       transition('void => *', [
         style({
@@ -49,8 +35,6 @@ export class LevelComponent implements OnInit {
   private bestSolutions;
   private modalContents;
   private isShowModal = false;
-  private boardRows = [];
-  private isBoardShaking = [];
 
   constructor(
     private router: Router,
@@ -287,7 +271,7 @@ export class LevelComponent implements OnInit {
   initSquares (level) {
     let levelData = this.puzzles[level - 1];
     let i = 0, row = 0, len = 25;
-    this.squares.length = 0;
+    this.squares = [];
     for (; i < len; i=i+5, row++) {
       this.squares.push({ id: i,   selected: !(levelData[row] & 1) });
       this.squares.push({ id: i+1, selected: !(levelData[row] & 2) });
@@ -300,20 +284,6 @@ export class LevelComponent implements OnInit {
       square.state = this.getStateWithRandomNum(square.selected ? 'selected' : 'unselected');
       return square;
     });
-    // init. board rows
-    this.boardRows = [];
-    for (let row=0; row<5; row++) {
-      let j = row * 5;
-      this.boardRows.push(this.squares.slice(j, j+5));
-    }
-  }
-
-  boardRowTrackByFn(index) {
-    return index;
-  }
-
-  squareTrackByFn(index, square) {
-    return square.id;
   }
 
   getStateWithRandomNum(state) {
@@ -326,33 +296,9 @@ export class LevelComponent implements OnInit {
   }
 
   initBoard () {
-    if (this.isOnInitTriggered) {
-      this.soundService.playFlipSound();
-    }
-    this.shakeBoardForReset();
     this.initSquares(this.gameState.selectedLevel);
     this.gameState.movesTaken = 0;
     this.gameState.movesLeft = 15;
-  }
-
-  shakeBoardForReset() {
-    this.startShakingBoard(9);
-  }
-
-  shakeBoardForClickedSquare (row, col) {
-    let boardShakeAnimationIndex = 10;
-    // TODO cleanup unused BOARD_SHAKE_ANIM_INDEX_LOOKUP and other unused board shake related code
-    // let boardShakeAnimationIndex = BOARD_SHAKE_ANIM_INDEX_LOOKUP[row][col];
-    this.startShakingBoard(boardShakeAnimationIndex);
-  }
-
-  startShakingBoard(boardShakeAnimationIndex) {
-    this.isBoardShaking[boardShakeAnimationIndex] = true;
-    setTimeout(() => { this.stopShakingBoard() }, 400 );
-  }
-
-  stopShakingBoard() {
-    this.isBoardShaking = this.isBoardShaking.map(() => { return false; });
   }
 
   replay () {
@@ -374,39 +320,6 @@ export class LevelComponent implements OnInit {
       }
     }
     return true;
-  }
-
-  indexToCoords (index) {
-    return {row: Math.floor(index / 5), col: (index % 5)};
-  }
-
-  coordsToIndex (coords) {
-    return (coords.row * 5) + coords.col;
-  }
-
-  adjustedCoords (coords, rowDiff, colDiff) {
-    return {
-      row: coords.row + rowDiff,
-      col: coords.col + colDiff
-    };
-  }
-
-  calcSquaresToToggle (index) {
-    let indexes = [ index ];
-    let coords = this.indexToCoords(index);
-    if (coords.col < 4) {
-      indexes.push(this.coordsToIndex(this.adjustedCoords(coords, 0, +1)));
-    }
-    if (coords.col > 0) {
-      indexes.push(this.coordsToIndex(this.adjustedCoords(coords, 0, -1)));
-    }
-    if (coords.row < 4) {
-      indexes.push(this.coordsToIndex(this.adjustedCoords(coords, +1, 0)));
-    }
-    if (coords.row > 0) {
-      indexes.push(this.coordsToIndex(this.adjustedCoords(coords, -1, 0)));
-    }
-    return indexes;
   }
 
   showModal (modalContents) {
@@ -517,23 +430,7 @@ export class LevelComponent implements OnInit {
     }
   }
 
-  getSquareIndex (row, col) {
-    return (row * 5) + col;
-  }
-
-  clickSquare (row, col) {
-    this.shakeBoardForClickedSquare(row, col);
-    let index = this.getSquareIndex(row,col);
-    this.soundService.playFlipSound();
-
-    let toggleIndexes = this.calcSquaresToToggle(index),
-      i = 0,
-      len = toggleIndexes.length;
-    for (; i<len; i++) {
-      let toggleIndex = toggleIndexes[i];
-      this.gameState.squares[toggleIndex].selected = !this.gameState.squares[toggleIndex].selected;
-      this.gameState.squares[toggleIndex].state = this.getStateWithRandomNum(this.gameState.squares[toggleIndex].selected ? 'selected' : 'unselected');
-    }
+  boardClicked(event) {
     this.gameState.movesTaken = this.gameState.movesTaken + 1;
     this.gameState.movesLeft = this.gameState.movesLeft - 1;
 
@@ -548,27 +445,4 @@ export class LevelComponent implements OnInit {
   playBlipSound() {
     this.soundService.playBlipSound();
   }
-
-  mouseEnterSquare (row, col) {
-    let squareIndex = this.getSquareIndex(row, col);
-    this.soundService.playBlipSound();
-
-    this.setSquareHoverState(squareIndex, true);
-  }
-
-  mouseLeaveSquare (row, col) {
-    let squareIndex = this.getSquareIndex(row, col);
-    this.setSquareHoverState(squareIndex, false);
-  }
-
-  setSquareHoverState (squareIndex, isHover) {
-    let toggleIndexes = this.calcSquaresToToggle(squareIndex),
-      i = 0,
-      len = toggleIndexes.length;
-    for (; i < len; i++) {
-      let toggleIndex = toggleIndexes[i];
-      this.gameState.squares[toggleIndex].hover = isHover;
-    }
-  }
-
 }

@@ -17,6 +17,8 @@ import { SoundService } from "./services/sound.service";
 import { SelectLevelComponent } from './select-level/select-level.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ThemeOptionComponent } from './theme-option/theme-option.component';
+import { TutorialComponent } from './tutorial/tutorial.component';
+import { BoardComponent } from './board/board.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ThemeOptionComponent } from './theme-option/theme-option.component';
     InfoComponent,
     SelectLevelComponent,
     SettingsComponent,
-    ThemeOptionComponent
+    ThemeOptionComponent,
+    TutorialComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
