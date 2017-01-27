@@ -40,8 +40,10 @@ export class SelectLevelComponent implements OnInit {
       this.levelRows[row] = [];
       for (let col=0; col<10; col++) {
         let level = 1 + (row * 10) + col;
+        let bestSolution = this.levelService.getPlayersBestSolution(level);
+
         this.levelRows[row].push({
-          numStars: this.levelService.getStarsEarned(level),
+          numStars: this.levelService.getStarsEarned(level, bestSolution),
           isSolved: this.levelService.isLevelSolved(level),
           isLocked: this.levelService.isLevelLocked(level),
         });

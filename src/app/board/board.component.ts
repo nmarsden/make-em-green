@@ -145,15 +145,6 @@ export class BoardComponent implements OnChanges {
     this.boardAnim = '';
   }
 
-  // Returns a random integer between min (inclusive) and max (exclusive)
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  getStateWithRandomNum(state) {
-    return state + this.getRandomInt(1, 3);
-  }
-
   clickSquare (row, col) {
     this.shrinkBoardForClickedSquare();
     let index = this.getSquareIndex(row,col);
@@ -165,7 +156,6 @@ export class BoardComponent implements OnChanges {
     for (; i<len; i++) {
       let toggleIndex = toggleIndexes[i];
       this.squares[toggleIndex].selected = !this.squares[toggleIndex].selected;
-      this.squares[toggleIndex].state = this.getStateWithRandomNum(this.squares[toggleIndex].selected ? 'selected' : 'unselected');
     }
     this.onClicked.emit();
   }

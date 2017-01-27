@@ -14,17 +14,16 @@ export class LevelService {
     this.gameState = this.gameStateService.getGameState();
   }
 
-  getStarsEarned (level: number) {
-    let playersBestSolution = this.getPlayersBestSolution(level);
-    if (playersBestSolution === 0) {
+  getStarsEarned (level: number, numMoves: number) {
+    if (numMoves === 999) {
       return 0;
     }
 
     let bestSolution = this.puzzleService.getNumMovesForKnownSolution(level);
 
-    if (playersBestSolution === bestSolution) {
+    if (numMoves === bestSolution) {
       return 3;
-    } else if (playersBestSolution <= (bestSolution + 4)) {
+    } else if (numMoves <= (bestSolution + 4)) {
       return 2;
     } else {
       return 1;
@@ -32,7 +31,7 @@ export class LevelService {
   }
 
   getPlayersBestSolution (level: number) {
-    return this.isLevelSolved(level) ? this.gameState.bestSolutions[level - 1] : 0;
+    return this.isLevelSolved(level) ? this.gameState.bestSolutions[level - 1] : 999;
   }
 
   isLevelSolved (level: number) {
