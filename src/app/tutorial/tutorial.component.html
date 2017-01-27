@@ -9,6 +9,7 @@
           <div class="lesson-count">{{ currentLesson }} of {{ lessons.length }}</div>
         </div>
         <div>{{ lesson.content }}</div>
+        <div *ngIf="lesson.hint" class="hint">Hint: {{ lesson.hint }}</div>
       </div>
       <app-board [squares]="squares"
                  (onClicked)="lesson.boardClicked($event)">

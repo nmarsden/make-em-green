@@ -82,7 +82,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice I',
-      content: `Try solving the board below. ( Hint: It requires one move. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires one move.',
       demo: () => {
         this.setupBoard([7, 11, 12, 13, 17]);
       },
@@ -90,7 +91,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice II',
-      content: `Try solving the board below. ( Hint: It requires two moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires two moves.',
       demo: () => {
         this.setupBoard([5, 9, 10, 11, 13, 14, 15, 19]);
       },
@@ -98,7 +100,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice III',
-      content: `Try solving the board below. ( Hint: It requires three moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires three move.',
       demo: () => {
         this.setupBoard([0, 1, 5, 7, 11, 12, 13, 17, 19, 23, 24]);
       },
@@ -106,7 +109,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice IV',
-      content: `Try solving the board below. ( Hint: It requires two moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires two moves.',
       demo: () => {
         this.setupBoard([7, 9, 11, 12, 14, 17, 19]);
       },
@@ -114,7 +118,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice V',
-      content: `Try solving the board below. ( Hint: It requires two moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires two moves.',
       demo: () => {
         this.setupBoard([7, 8, 11, 14, 17, 18]);
       },
@@ -122,7 +127,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice VI',
-      content: `Try solving the board below. ( Hint: It requires two moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires two moves.',
       demo: () => {
         this.setupBoard([13, 17, 18, 24]);
       },
@@ -130,7 +136,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice VII',
-      content: `Try solving the board below. ( Hint: It requires three moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires three moves.',
       demo: () => {
         this.setupBoard([5, 7, 9, 10, 12, 14, 15, 17, 19]);
       },
@@ -138,7 +145,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice VIII',
-      content: `Try solving the board below. ( Hint: It requires four moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires four moves.',
       demo: () => {
         this.setupBoard([3, 4, 5, 10, 11, 13, 14, 15, 23, 24]);
       },
@@ -146,7 +154,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice IX',
-      content: `Try solving the board below. ( Hint: It requires four moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires four moves.',
       demo: () => {
         this.setupBoard([1, 2, 3, 5, 7, 9, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23]);
       },
@@ -154,7 +163,8 @@ export class TutorialComponent implements OnInit {
     },
     {
       title: 'Practice X',
-      content: `Try solving the board below. ( Hint: It requires five moves. )`,
+      content: `Try solving the board below.`,
+      hint: 'It requires five moves.',
       demo: () => {
         this.setupBoard([1, 2, 3, 5, 9, 10, 12, 14, 15, 19, 21, 22, 23]);
       },
@@ -280,7 +290,7 @@ export class TutorialComponent implements OnInit {
     return () => {
       if (!this.isLessonCompleted && this.isGameWon()) {
         this.isLessonCompleted = true;
-        this.lesson.instructionsEnd = "Well done!"
+        this.lesson.instructionsEnd = "Well done!";
         this.showEndInstructions(300);
       }
     }
