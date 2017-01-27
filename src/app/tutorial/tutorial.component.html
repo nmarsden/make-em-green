@@ -2,25 +2,29 @@
   <div class="container">
     <div>
       <div class="heading">Tutorial</div>
-      <div class="section">
-        <div class="lesson-title">Lesson {{ currentLesson }}: {{ lesson.title }}</div>
-        <div class="lesson-content">{{ lesson.content }}</div>
-        <div class="lesson-nav">
-          <button class="btn btn-default"
-               [disabled]="currentLesson === 1"
-               (click)="previousLesson()">Previous</button>
-          <div class="page-count">{{ currentLesson }} of {{ lessons.length }}</div>
-          <button class="btn btn-default"
-               [disabled]="currentLesson === lessons.length"
-               (click)="nextLesson()">Next</button>
+      <div class="section"
+           [class.is-show-section]="isShowSection">
+        <div class="lesson-title">
+          <div>Lesson {{ currentLesson }}: {{ lesson.title }}</div>
+          <div class="lesson-count">{{ currentLesson }} of {{ lessons.length }}</div>
         </div>
+        <div>{{ lesson.content }}</div>
       </div>
       <app-board [squares]="squares"
                  (onClicked)="lesson.boardClicked($event)">
-        <div *ngIf="lesson.instructions"
+        <div *ngIf="lesson.instructionsStart"
              class="instructions-bubble"
-             [class.is-show-bubble]="isShowInstructionBubble">
-          <div>{{ lesson.instructions }}</div>
+             [class.is-show-bubble]="isShowInstructionsStart">
+          <div>{{ lesson.instructionsStart }}</div>
+        </div>
+        <div *ngIf="lesson.instructionsEnd"
+             class="instructions-bubble"
+             [class.is-show-bubble]="isShowInstructionsEnd">
+          <div>{{ lesson.instructionsEnd }}</div>
+          <div class="instructions-bubble-footer">
+            <button class="btn btn-default"
+                    (click)="nextLesson()">Next</button>
+          </div>
         </div>
       </app-board>
       <button *ngIf="currentLesson === lessons.length"

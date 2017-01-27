@@ -157,7 +157,7 @@ export class BoardComponent implements OnChanges {
       let toggleIndex = toggleIndexes[i];
       this.squares[toggleIndex].selected = !this.squares[toggleIndex].selected;
     }
-    this.onClicked.emit();
+    this.onClicked.emit({ tileIndex: index });
   }
 
 }
