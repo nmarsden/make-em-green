@@ -8,7 +8,6 @@ export class GameStateService {
   constructor() {
     this.model = {
       // Properties reset on page refresh
-      squares: [],
       isSoundOn: true,
       theme: 'fruit',
 

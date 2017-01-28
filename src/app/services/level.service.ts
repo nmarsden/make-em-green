@@ -59,4 +59,14 @@ export class LevelService {
     }
   }
 
+  getSelectedLevel () {
+    return this.gameState.selectedLevel;
+  }
+
+  updateSelectedLevel (level: number) {
+    this.gameState.selectedLevel = level;
+
+    // Save updated selected level
+    this.gameStateService.saveState();
+  }
 }

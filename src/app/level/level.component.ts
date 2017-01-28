@@ -29,9 +29,7 @@ import { LevelService } from "../services/level.service";
 export class LevelComponent implements OnInit {
 
   private isOnInitTriggered: boolean;
-  private gameState;
   private squares;
-  private bestSolutions;
   private modalContents;
   private isShowModal = false;
   private isLevelLocked;
@@ -41,22 +39,19 @@ export class LevelComponent implements OnInit {
   private movesLeft;
   private starsEarned = [];
   private bestSolution;
+  private selectedLevel;
 
   constructor(
     private router: Router,
-    private gameStateService : GameStateService,
     private soundService: SoundService,
     private levelService: LevelService
   ) {
 
-    this.gameState = gameStateService.getGameState();
-    this.squares = this.gameState.squares;
-
-    this.bestSolutions = this.gameState.bestSolutions;
+    this.selectedLevel = this.levelService.getSelectedLevel();
 
     this.isOnInitTriggered = false;
 
-    this.initLevel(this.gameState.selectedLevel);
+    this.initLevel(this.selectedLevel);
     this.initBoard();
   }
 
@@ -83,7 +78,7 @@ export class LevelComponent implements OnInit {
   }
 
   initBoard () {
-    this.initSquares(this.gameState.selectedLevel);
+    this.initSquares(this.selectedLevel);
     this.movesTaken = 0;
     this.movesLeft = 15;
   }
@@ -122,17 +117,17 @@ export class LevelComponent implements OnInit {
   }
 
   selectPreviousLevel () {
-    if (this.gameState.selectedLevel > 1) {
-      this.gameState.selectedLevel--;
-      this.initLevel(this.gameState.selectedLevel);
+    if (this.selectedLevel > 1) {
+      this.selectedLevel--;
+      this.initLevel(this.selectedLevel);
       this.initBoard();
     }
   }
 
   selectNextLevel () {
-    if (this.gameState.selectedLevel < 100) {
-      this.gameState.selectedLevel++;
-      this.initLevel(this.gameState.selectedLevel);
+    if (this.selectedLevel < 100) {
+      this.selectedLevel++;
+      this.initLevel(this.selectedLevel);
       this.initBoard();
     }
   }
@@ -143,11 +138,10 @@ export class LevelComponent implements OnInit {
     this.isLevelSolved = this.levelService.isLevelSolved(selectedLevel);
     this.bestSolution = this.levelService.getPlayersBestSolution(selectedLevel);
 
-    let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.bestSolution);
+    let numStarsEarned = this.levelService.getStarsEarned(selectedLevel, this.bestSolution);
     this.starsEarned = [numStarsEarned > 0, numStarsEarned > 1, numStarsEarned > 2];
 
-    // Save selected level
-    this.gameStateService.saveState();
+    this.levelService.updateSelectedLevel(selectedLevel);
   }
 
   gameLost () {
@@ -167,9 +161,9 @@ export class LevelComponent implements OnInit {
   gameWon () {
     this.soundService.playWonSound();
 
-    this.levelService.updatePlayersBestSolution(this.gameState.selectedLevel, this.movesTaken);
+    this.levelService.updatePlayersBestSolution(this.selectedLevel, this.movesTaken);
 
-    let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.movesTaken);
+    let numStarsEarned = this.levelService.getStarsEarned(this.selectedLevel, this.movesTaken);
     let starsEarned = [numStarsEarned > 0, numStarsEarned > 1, numStarsEarned > 2];
 
     this.showModal({

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../app.routes.animations';
 import { SoundService } from "../services/sound.service";
-import { GameStateService } from "../services/game-state.service";
 import { LevelService } from "../services/level.service";
 import { Router } from "@angular/router";
 
@@ -19,16 +18,13 @@ import { Router } from "@angular/router";
 })
 export class SelectLevelComponent implements OnInit {
 
-  private gameState;
   private levelRows = [];
 
   constructor(
     private router: Router,
-    private gameStateService: GameStateService,
     private levelService: LevelService,
     private soundService: SoundService) {
 
-    this.gameState = this.gameStateService.getGameState();
     this.initLevelRows();
   }
 
@@ -65,7 +61,7 @@ export class SelectLevelComponent implements OnInit {
   }
 
   showLevel (level) {
-    this.gameState.selectedLevel = level;
+    this.levelService.updateSelectedLevel(level);
 
     this.soundService.playTransitionSound();
     this.router.navigate(['/level']);
