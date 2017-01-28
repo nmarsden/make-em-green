@@ -14,12 +14,7 @@ export class GameStateService {
         {id: 1, earned: false},
         {id: 2, earned: false}
       ],
-      movesTaken: 0,
-      movesLeft: 15,
       squares: [],
-      isLevelLocked: false,
-      isLevelSolved: false,
-      isReplay: false,
       isSoundOn: true,
       theme: 'fruit',
 

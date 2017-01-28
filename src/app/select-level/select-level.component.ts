@@ -45,7 +45,7 @@ export class SelectLevelComponent implements OnInit {
         this.levelRows[row].push({
           numStars: this.levelService.getStarsEarned(level, bestSolution),
           isSolved: this.levelService.isLevelSolved(level),
-          isLocked: this.levelService.isLevelLocked(level),
+          isLocked: this.levelService.isLevelLocked(level)
         });
       }
     }

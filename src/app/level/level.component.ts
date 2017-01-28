@@ -34,6 +34,11 @@ export class LevelComponent implements OnInit {
   private bestSolutions;
   private modalContents;
   private isShowModal = false;
+  private isLevelLocked;
+  private isLevelSolved;
+  private isReplay;
+  private movesTaken;
+  private movesLeft;
 
   constructor(
     private router: Router,
@@ -77,19 +82,19 @@ export class LevelComponent implements OnInit {
 
   initBoard () {
     this.initSquares(this.gameState.selectedLevel);
-    this.gameState.movesTaken = 0;
-    this.gameState.movesLeft = 15;
+    this.movesTaken = 0;
+    this.movesLeft = 15;
   }
 
   replay () {
-    if (!this.gameState.isLevelLocked) {
-      this.gameState.isReplay = true;
+    if (!this.isLevelLocked) {
+      this.isReplay = true;
       this.initBoard();
     }
   }
 
   isShowSolved () {
-    return this.gameState.isLevelSolved && !this.gameState.isReplay;
+    return this.isLevelSolved && !this.isReplay;
   }
 
   isGameWon () {
@@ -117,7 +122,6 @@ export class LevelComponent implements OnInit {
   selectPreviousLevel () {
     if (this.gameState.selectedLevel > 1) {
       this.gameState.selectedLevel--;
-      this.gameState.isReplay = false;
       this.initLevel(this.gameState.selectedLevel);
       this.initBoard();
     }
@@ -126,15 +130,15 @@ export class LevelComponent implements OnInit {
   selectNextLevel () {
     if (this.gameState.selectedLevel < 100) {
       this.gameState.selectedLevel++;
-      this.gameState.isReplay = false;
       this.initLevel(this.gameState.selectedLevel);
       this.initBoard();
     }
   }
 
   initLevel (selectedLevel) {
-    this.gameState.isLevelLocked = this.levelService.isLevelLocked(selectedLevel);
-    this.gameState.isLevelSolved = this.levelService.isLevelSolved(selectedLevel);
+    this.isReplay = false;
+    this.isLevelLocked = this.levelService.isLevelLocked(selectedLevel);
+    this.isLevelSolved = this.levelService.isLevelSolved(selectedLevel);
     this.gameState.bestSolution = this.levelService.getPlayersBestSolution(selectedLevel);
 
     let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.gameState.bestSolution);
@@ -161,8 +165,8 @@ export class LevelComponent implements OnInit {
   }
 
   updateBestSolutions () {
-    if (this.gameState.movesTaken < this.gameState.bestSolution) {
-      this.gameState.bestSolution = this.gameState.movesTaken;
+    if (this.movesTaken < this.gameState.bestSolution) {
+      this.gameState.bestSolution = this.movesTaken;
       if (this.levelService.isLevelSolved(this.gameState.selectedLevel)) {
         this.bestSolutions[this.gameState.selectedLevel-1] = this.gameState.bestSolution;
       } else {
@@ -178,7 +182,7 @@ export class LevelComponent implements OnInit {
 
     this.updateBestSolutions();
 
-    let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.gameState.movesTaken);
+    let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.movesTaken);
     let starsEarned = [numStarsEarned > 0, numStarsEarned > 1, numStarsEarned > 2];
 
     this.showModal({
@@ -193,13 +197,13 @@ export class LevelComponent implements OnInit {
   }
 
   boardClicked(event) {
-    this.gameState.movesTaken = this.gameState.movesTaken + 1;
-    this.gameState.movesLeft = this.gameState.movesLeft - 1;
+    this.movesTaken = this.movesTaken + 1;
+    this.movesLeft = this.movesLeft - 1;
 
     if (this.isGameWon()) {
       this.gameWon();
     }
-    else if (this.gameState.movesLeft === 0) {
+    else if (this.movesLeft === 0) {
       this.gameLost();
     }
   }
