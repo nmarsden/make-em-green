@@ -9,11 +9,6 @@ export class GameStateService {
     this.model = {
       // Properties reset on page refresh
       bestSolution: 999,
-      starsEarned: [
-        {id: 0, earned: false},
-        {id: 1, earned: false},
-        {id: 2, earned: false}
-      ],
       squares: [],
       isSoundOn: true,
       theme: 'fruit',
