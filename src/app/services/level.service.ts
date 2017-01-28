@@ -14,6 +14,10 @@ export class LevelService {
     this.gameState = this.gameStateService.getGameState();
   }
 
+  getLevelData (level: number) {
+    return this.puzzleService.getPuzzle(level);
+  }
+
   getStarsEarned (level: number, numMoves: number) {
     if (numMoves === 999) {
       return 0;

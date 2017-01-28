@@ -3,9 +3,112 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PuzzleService {
 
+  private puzzles;
   private solutions;
 
   constructor() {
+    this.puzzles = [];
+    this.puzzles[ 0] = [0,0,21,0 ,0];
+    this.puzzles[ 1] = [21,21,0 ,21,21];
+    this.puzzles[ 2] = [10,27,27,27,10];
+    this.puzzles[ 3] = [0 ,27,0 ,17,27];
+    this.puzzles[ 4] = [15,23,23,24,27];
+    this.puzzles[ 5] = [0 ,0 ,21,21,14];
+    this.puzzles[ 6] = [15,17,17,17,15];
+    this.puzzles[ 7] = [0 ,4 ,10,21,10];
+    this.puzzles[ 8] = [10,31,14,26,7 ];
+    this.puzzles[ 9] = [14,14,14,0 ,0 ];
+    this.puzzles[10] = [21,21,21,21,14];
+    this.puzzles[11] = [31,10,27,14,10];
+    this.puzzles[12] = [8 ,20,10,5 ,2 ];
+    this.puzzles[13] = [0 ,0 ,2 ,2 ,2 ];
+    this.puzzles[14] = [0 ,2 ,0 ,2 ,0 ];
+    this.puzzles[15] = [1 ,1 ,1 ,1 ,31];
+    this.puzzles[16] = [0 ,0 ,4 ,14,31];
+    this.puzzles[17] = [4 ,10,21,10,4 ];
+    this.puzzles[18] = [21,0 ,21,0 ,21];
+    this.puzzles[19] = [0 ,0 ,17,0 ,0 ];
+    this.puzzles[20] = [30,2 ,14,2 ,2 ];
+    this.puzzles[21] = [14,17,17,17,14];
+    this.puzzles[22] = [0 ,0 ,28,12,4 ];
+    this.puzzles[23] = [0 ,0 ,17,31,18];
+    this.puzzles[24] = [1 ,3 ,7 ,15,30];
+    this.puzzles[25] = [17,17,31,17,17];
+    this.puzzles[26] = [4 ,14,4 ,4 ,4 ];
+    this.puzzles[27] = [0 ,0 ,28,28,28];
+    this.puzzles[28] = [0 ,2 ,0 ,0 ,0 ];
+    this.puzzles[29] = [0 ,0 ,4 ,0 ,0 ];
+    this.puzzles[30] = [17,19,21,25,17];
+    this.puzzles[31] = [31,8 ,4 ,2 ,31];
+    this.puzzles[32] = [8 ,8 ,21,17,25];
+    this.puzzles[33] = [20,17,17,22,30];
+    this.puzzles[34] = [24,10,17,21,0 ];
+    this.puzzles[35] = [4 ,10,17,31,17];
+    this.puzzles[36] = [0 ,14,14,14,0 ];
+    this.puzzles[37] = [21,10,21,10,21];
+    this.puzzles[38] = [10,1 ,3 ,12,10];
+    this.puzzles[39] = [0 ,0 ,10,0 ,0 ];
+    this.puzzles[40] = [17,10,4 ,4 ,4 ];
+    this.puzzles[41] = [7 ,9 ,7 ,9 ,7 ];
+    this.puzzles[42] = [17,11,7 ,2 ,14];
+    this.puzzles[43] = [0 ,27,31,4 ,14];
+    this.puzzles[44] = [14,5 ,28,15,21];
+    this.puzzles[45] = [4 ,14,31,14,4 ];
+    this.puzzles[46] = [4 ,31,5 ,18,16];
+    this.puzzles[47] = [0 ,17,4 ,17,0 ];
+    this.puzzles[48] = [17,10,4 ,10,17];
+    this.puzzles[49] = [31,31,31,31,31];
+    this.puzzles[50] = [27,0 ,27,0 ,27];
+    this.puzzles[51] = [31,4 ,0 ,4 ,31];
+    this.puzzles[52] = [31,10,4 ,10,31];
+    this.puzzles[53] = [10,17,0 ,27,17];
+    this.puzzles[54] = [4 ,6 ,27,12,4 ];
+    this.puzzles[55] = [10,31,21,31,10];
+    this.puzzles[56] = [21,17,27,17,21];
+    this.puzzles[57] = [0 ,0 ,14,2 ,0 ];
+    this.puzzles[58] = [16,8 ,4 ,6 ,5 ];
+    this.puzzles[59] = [0 ,21,17,21,17];
+    this.puzzles[60] = [31,14,14,14,31];
+    this.puzzles[61] = [17,10,0 ,10,17];
+    this.puzzles[62] = [14,10,14,8 ,14];
+    this.puzzles[63] = [15,9 ,15,7 ,9 ];
+    this.puzzles[64] = [21,21,21,21,14];
+    this.puzzles[65] = [14,2 ,14,8 ,14];
+    this.puzzles[66] = [31,17,21,17,31];
+    this.puzzles[67] = [21,0 ,21,0 ,21];
+    this.puzzles[68] = [10,21,14,21,10];
+    this.puzzles[69] = [21,0 ,0 ,0 ,21];
+    this.puzzles[70] = [31,29,27,23,31];
+    this.puzzles[71] = [31,4 ,31,17,17];
+    this.puzzles[72] = [27,10,27,10,27];
+    this.puzzles[73] = [4 ,10,31,17,31];
+    this.puzzles[74] = [17,27,21,17,17];
+    this.puzzles[75] = [31,21,31,21,31];
+    this.puzzles[76] = [14,4 ,4 ,4 ,14];
+    this.puzzles[77] = [14,10,31,14,27];
+    this.puzzles[78] = [0 ,0 ,4 ,0 ,0 ];
+    this.puzzles[79] = [17,0 ,4 ,0 ,17];
+    this.puzzles[80] = [27,27,0 ,27,27];
+    this.puzzles[81] = [10,0 ,17,14,4 ];
+    this.puzzles[82] = [21,14,27,14,21];
+    this.puzzles[83] = [17,19,21,25,17];
+    this.puzzles[84] = [21,21,27,21,21];
+    this.puzzles[85] = [4 ,4 ,14,21,21];
+    this.puzzles[86] = [21,21,21,21,31];
+    this.puzzles[87] = [0 ,14,14,14,0 ];
+    this.puzzles[88] = [4 ,10,17,31,17];
+    this.puzzles[89] = [21,10,21,10,21];
+    this.puzzles[90] = [17,14,10,14,17];
+    this.puzzles[91] = [4 ,10,17,10,4 ];
+    this.puzzles[92] = [21,0 ,10,0 ,21];
+    this.puzzles[93] = [10,31,10,31,10];
+    this.puzzles[94] = [31,21,31,29,31];
+    this.puzzles[95] = [17,10,4 ,10,17];
+    this.puzzles[96] = [31,4 ,31,4 ,31];
+    this.puzzles[97] = [31,14,4 ,14,31];
+    this.puzzles[98] = [4 ,21,31,21,4 ];
+    this.puzzles[99] = [31,31,31,31,31];
+
     this.solutions = [];
     this.solutions[0] = [15, 20, 17, 22, 19, 24];
     this.solutions[1] = [5, 15, 7, 17, 9, 19];
@@ -107,6 +210,10 @@ export class PuzzleService {
     this.solutions[97] = [0, 5, 10, 1, 6, 16, 21, 12, 17, 22, 8, 13, 18, 9, 24];
     this.solutions[98] = [0, 10, 15, 1, 6, 11, 16, 21, 2, 7, 12, 8, 18, 19, 24];
     this.solutions[99] = [0, 5, 1, 6, 16, 21, 12, 17, 22, 8, 13, 18, 9, 14, 24];
+  }
+
+  getPuzzle(level) {
+    return this.puzzles[level - 1];
   }
 
   getNumMovesForKnownSolution(level) {
