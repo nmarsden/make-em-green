@@ -3,6 +3,7 @@ import { GameStateService } from "./services/game-state.service";
 import { SoundService } from "./services/sound.service";
 import { Router, NavigationEnd } from "@angular/router";
 import { SettingsService } from "./services/settings.service";
+import { ThemeService } from "./services/theme.service";
 
 @Component({
   selector: 'app-root',
@@ -17,11 +18,12 @@ import { SettingsService } from "./services/settings.service";
 export class AppComponent implements OnInit {
 
   private isSoundOn;
-  private theme;
+  private themeClassObject;
 
   constructor(
     private gameStateService: GameStateService,
     private settingsService: SettingsService,
+    private themeService: ThemeService,
     private soundService: SoundService,
     private router: Router
   ) {
@@ -33,10 +35,12 @@ export class AppComponent implements OnInit {
     this.gameStateService.restoreState();
 
     this.isSoundOn = this.settingsService.getIsSoundOn();
-    this.theme = this.settingsService.getTheme();
+    this.themeClassObject = this.themeService.getThemeClassObject(this.settingsService.getTheme());
 
-    // subscribe to theme updated event
-    this.settingsService.subscribeToThemeUpdatedEvent((theme) => { this.theme = theme; });
+    // update the themeClassObject when the theme is updated
+    this.settingsService.subscribeToThemeUpdatedEvent((theme) => {
+      this.themeClassObject = this.themeService.getThemeClassObject(theme);
+    });
 
     // init sounds
     this.soundService.initSounds(this.isSoundOn);

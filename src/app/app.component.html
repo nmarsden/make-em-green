@@ -1,11 +1,5 @@
 <div class="page"
-     [class.theme-classic]="theme === 'classic'"
-     [class.theme-cat]="theme === 'cat'"
-     [class.theme-fruit]="theme === 'fruit'"
-     [class.theme-reptile]="theme === 'reptile'"
-     [class.theme-amphibian]="theme === 'amphibian'"
-     [class.theme-mineral]="theme === 'mineral'"
-     [class.theme-plant]="theme === 'plant'">
+     [ngClass]="themeClassObject">
   <div class="container">
     <div class="jumbotron">
       <div class="make-em-green-logo"
