@@ -21,7 +21,7 @@
     <button type="button" class="btn btn-default btn-lg" (mouseenter)="playBlipSound()" (click)="showHome()">
       <span class="icon icon-home"></span>
     </button>
-    <span class="badge" *ngIf="isShowSolved()">Your Best: {{gameState.bestSolution}} Moves</span>
+    <span class="badge" *ngIf="isShowSolved()">Your Best: {{bestSolution}} Moves</span>
     <span class="badge" *ngIf="!isShowSolved()">Moves Left: {{movesLeft}}</span>
     <button type="button" class="btn btn-default btn-lg" [disabled]="isLevelLocked" (mouseenter)="playBlipSound()" (click)="replay()">
       <span class="icon icon-refresh"></span>

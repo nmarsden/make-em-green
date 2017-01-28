@@ -40,6 +40,7 @@ export class LevelComponent implements OnInit {
   private movesTaken;
   private movesLeft;
   private starsEarned = [];
+  private bestSolution;
 
   constructor(
     private router: Router,
@@ -140,9 +141,9 @@ export class LevelComponent implements OnInit {
     this.isReplay = false;
     this.isLevelLocked = this.levelService.isLevelLocked(selectedLevel);
     this.isLevelSolved = this.levelService.isLevelSolved(selectedLevel);
-    this.gameState.bestSolution = this.levelService.getPlayersBestSolution(selectedLevel);
+    this.bestSolution = this.levelService.getPlayersBestSolution(selectedLevel);
 
-    let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.gameState.bestSolution);
+    let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.bestSolution);
     this.starsEarned = [numStarsEarned > 0, numStarsEarned > 1, numStarsEarned > 2];
 
     // Save selected level
@@ -163,23 +164,10 @@ export class LevelComponent implements OnInit {
     });
   }
 
-  updateBestSolutions () {
-    if (this.movesTaken < this.gameState.bestSolution) {
-      this.gameState.bestSolution = this.movesTaken;
-      if (this.levelService.isLevelSolved(this.gameState.selectedLevel)) {
-        this.bestSolutions[this.gameState.selectedLevel-1] = this.gameState.bestSolution;
-      } else {
-        this.bestSolutions.push(this.gameState.bestSolution);
-      }
-      // Save updated best solutions
-      this.gameStateService.saveState();
-    }
-  }
-
   gameWon () {
     this.soundService.playWonSound();
 
-    this.updateBestSolutions();
+    this.levelService.updatePlayersBestSolution(this.gameState.selectedLevel, this.movesTaken);
 
     let numStarsEarned = this.levelService.getStarsEarned(this.gameState.selectedLevel, this.movesTaken);
     let starsEarned = [numStarsEarned > 0, numStarsEarned > 1, numStarsEarned > 2];

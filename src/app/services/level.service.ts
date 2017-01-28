@@ -45,4 +45,18 @@ export class LevelService {
   isLevelLocked (level: number) {
     return (level > (this.gameState.bestSolutions.length + 1));
   }
+
+  updatePlayersBestSolution (level: number, movesTaken: number) {
+    let playersBestSolution = this.getPlayersBestSolution(level);
+    if (movesTaken < playersBestSolution) {
+      if (this.isLevelSolved(level)) {
+        this.gameState.bestSolutions[level-1] = movesTaken;
+      } else {
+        this.gameState.bestSolutions.push(movesTaken);
+      }
+      // Save updated best solutions
+      this.gameStateService.saveState();
+    }
+  }
+
 }
