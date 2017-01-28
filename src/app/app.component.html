@@ -1,11 +1,11 @@
 <div class="page"
-     [class.theme-classic]="gameState.theme === 'classic'"
-     [class.theme-cat]="gameState.theme === 'cat'"
-     [class.theme-fruit]="gameState.theme === 'fruit'"
-     [class.theme-reptile]="gameState.theme === 'reptile'"
-     [class.theme-amphibian]="gameState.theme === 'amphibian'"
-     [class.theme-mineral]="gameState.theme === 'mineral'"
-     [class.theme-plant]="gameState.theme === 'plant'">
+     [class.theme-classic]="theme === 'classic'"
+     [class.theme-cat]="theme === 'cat'"
+     [class.theme-fruit]="theme === 'fruit'"
+     [class.theme-reptile]="theme === 'reptile'"
+     [class.theme-amphibian]="theme === 'amphibian'"
+     [class.theme-mineral]="theme === 'mineral'"
+     [class.theme-plant]="theme === 'plant'">
   <div class="container">
     <div class="jumbotron">
       <div class="make-em-green-logo"
@@ -20,8 +20,8 @@
       <div (mouseenter)="playBlipSound()"
            (click)="toggleSound()"
            class="sound"
-           [class.sound-on]="gameState.isSoundOn"
-           [class.sound-off]="!gameState.isSoundOn"></div>
+           [class.sound-on]="isSoundOn"
+           [class.sound-off]="!isSoundOn"></div>
     </div>
     <router-outlet></router-outlet>
   </div>

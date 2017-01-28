@@ -1,6 +1,5 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { Router } from "@angular/router";
-import { GameStateService } from "../services/game-state.service";
 import { SoundService } from "../services/sound.service";
 import { routerTransition } from '../app.routes.animations';
 import { LevelService } from "../services/level.service";
@@ -52,7 +51,6 @@ export class LevelComponent implements OnInit {
     this.isOnInitTriggered = false;
 
     this.initLevel(this.selectedLevel);
-    this.initBoard();
   }
 
   ngOnInit() {
@@ -120,7 +118,6 @@ export class LevelComponent implements OnInit {
     if (this.selectedLevel > 1) {
       this.selectedLevel--;
       this.initLevel(this.selectedLevel);
-      this.initBoard();
     }
   }
 
@@ -128,7 +125,6 @@ export class LevelComponent implements OnInit {
     if (this.selectedLevel < 100) {
       this.selectedLevel++;
       this.initLevel(this.selectedLevel);
-      this.initBoard();
     }
   }
 
@@ -142,6 +138,8 @@ export class LevelComponent implements OnInit {
     this.starsEarned = [numStarsEarned > 0, numStarsEarned > 1, numStarsEarned > 2];
 
     this.levelService.updateSelectedLevel(selectedLevel);
+
+    this.initBoard();
   }
 
   gameLost () {

@@ -6,14 +6,11 @@
         <div class="sub-heading">Theme</div>
         <div class="themes-container">
           <div class="theme-item"
-               [class.selected]="gameState.theme === theme"
+               [class.selected]="model.selectedTheme === theme"
                (mouseenter)="playBlipSound()"
-               (click)="clickTheme()"
-               *ngFor="let theme of themes">
-            <label>
-              <input type="radio" name="theme" [(ngModel)]="gameState.theme" [value]="theme">
+               (click)="clickTheme(theme)"
+               *ngFor="let theme of model.themes">
               <app-theme-option theme="{{ theme }}"></app-theme-option>
-            </label>
           </div>
         </div>
       </div>

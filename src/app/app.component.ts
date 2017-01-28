@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { GameStateService } from "./services/game-state.service";
 import { SoundService } from "./services/sound.service";
 import { Router, NavigationEnd } from "@angular/router";
+import { SettingsService } from "./services/settings.service";
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,12 @@ import { Router, NavigationEnd } from "@angular/router";
 
 export class AppComponent implements OnInit {
 
-  private gameState;
+  private isSoundOn;
+  private theme;
 
   constructor(
     private gameStateService: GameStateService,
+    private settingsService: SettingsService,
     private soundService: SoundService,
     private router: Router
   ) {
@@ -28,10 +31,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // init game state
     this.gameStateService.restoreState();
-    this.gameState = this.gameStateService.getGameState();
+
+    this.isSoundOn = this.settingsService.getIsSoundOn();
+    this.theme = this.settingsService.getTheme();
+
+    // subscribe to theme updated event
+    this.settingsService.subscribeToThemeUpdatedEvent((theme) => { this.theme = theme; });
 
     // init sounds
-    this.soundService.initSounds(this.gameState.isSoundOn);
+    this.soundService.initSounds(this.isSoundOn);
 
     // subscribe to router events to save state whenever the route changes
     this.router.events.subscribe((event) => {
@@ -48,8 +56,10 @@ export class AppComponent implements OnInit {
 
   toggleSound() {
     this.soundService.playHighlightSound();
-    this.gameState.isSoundOn = !this.gameState.isSoundOn;
-    this.soundService.setMute(!this.gameState.isSoundOn);
+    this.isSoundOn = !this.isSoundOn;
+    this.settingsService.updateIsSoundOn(this.isSoundOn);
+
+    this.soundService.setMute(!this.isSoundOn);
   }
 
   playBlipSound() {

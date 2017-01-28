@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GameStateService } from "../services/game-state.service";
 import { routerTransition } from "../app.routes.animations";
 import { SoundService } from "../services/sound.service";
+import { SettingsService } from "../services/settings.service";
 
 @Component({
   selector: 'app-settings',
@@ -17,15 +17,17 @@ import { SoundService } from "../services/sound.service";
 })
 export class SettingsComponent implements OnInit {
 
-  private gameState;
-  private themes = [ 'classic', 'cat', 'fruit', 'reptile', 'amphibian', 'mineral', 'plant'];
+  private model;
 
   constructor(
-    private gameStateService: GameStateService,
+    private settingsService: SettingsService,
     private soundService: SoundService
   ) {
 
-    this.gameState = this.gameStateService.getGameState();
+    this.model = {
+      themes: [ 'classic', 'cat', 'fruit', 'reptile', 'amphibian', 'mineral', 'plant'],
+      selectedTheme: this.settingsService.getTheme()
+    };
   }
 
   ngOnInit() {
@@ -35,7 +37,11 @@ export class SettingsComponent implements OnInit {
     this.soundService.playBlipSound();
   }
 
-  clickTheme() {
+  clickTheme(theme) {
     this.soundService.playHighlightSound();
+
+    this.model.selectedTheme = theme;
+
+    this.settingsService.updateTheme(this.model.selectedTheme);
   }
 }

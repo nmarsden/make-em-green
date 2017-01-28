@@ -4,36 +4,35 @@ import { Injectable } from '@angular/core';
 export class GameStateService {
 
   private model;
+  private isInitialized = false;
 
   constructor() {
+    // Properties saved to local storage
     this.model = {
-      // Properties reset on page refresh
-      isSoundOn: true,
-      theme: 'fruit',
-
-      // Properties saved to local storage
       selectedLevel: 1,  // values in range: 1 to 100
-      bestSolutions: []
+      bestSolutions: [],
+      isSoundOn: true,
+      theme: 'fruit'
     };
   }
 
   getGameState() {
+    if (!this.isInitialized) {
+      throw "Invalid use of GameStateService: getGameState() cannot be called before restoreState()";
+    }
     return this.model;
   }
 
   saveState() {
-    let state = {
-      selectedLevel: this.model.selectedLevel,
-      bestSolutions: this.model.bestSolutions
-    };
-    (localStorage as any).gameStateService = JSON.stringify(state);
+    (localStorage as any).gameStateService = JSON.stringify(this.model);
   }
 
   restoreState() {
+    this.isInitialized = true;
+
     if ((localStorage as any).gameStateService) {
       let state = JSON.parse((localStorage as any).gameStateService);
-      this.model.selectedLevel = state.selectedLevel;
-      this.model.bestSolutions = state.bestSolutions;
+      this.model = Object.assign(this.model, state);
     }
   }
 
