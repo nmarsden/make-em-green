@@ -1,0 +1,79 @@
+@import (reference) "../app.variables.less";
+
+.board-container {
+  position: relative;
+}
+
+.noselect {
+  user-select: none;
+}
+
+.board {
+  max-width: 460px;
+  margin: 0 auto;
+  will-change: transform;
+  transform-origin: 50% 50%;
+}
+
+.board-row {
+  display: flex;
+}
+
+.board-square-container {
+  margin: 3px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: auto;
+
+  &:before {
+    content:'';
+    float: left;
+    padding-top: 100%;
+  }
+
+  .board-square {
+    width: 100%;
+    cursor: pointer;
+
+    &.board-square--green {
+      background: #008000;
+    }
+
+    &.board-square--red {
+      background: #C50000;
+    }
+
+    &.board-square--highlight {
+      outline: 1px solid white;
+    }
+  }
+}
+
+.board-square-icon-container {
+  display: flex;
+}
+
+.board-square-icon {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: all 0.5s ease;
+
+  display: block;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: auto;
+  opacity: 0.1;
+
+  background-size: 100% 100%;
+
+  &:before {
+    content:'';
+    float: left;
+    padding-top: 100%;
+  }
+
+}
+
+

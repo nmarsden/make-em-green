@@ -6,6 +6,7 @@ import { InfoComponent } from "./info/info.component";
 import { SelectLevelComponent } from "./select-level/select-level.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { TutorialComponent } from "./tutorial/tutorial.component";
+import { CheatSheetComponent } from "./cheat-sheet/cheat-sheet.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,7 +14,8 @@ export const routes: Routes = [
   { path: 'level', component: LevelComponent },
   { path: 'tutorial', component: TutorialComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: 'info', component: InfoComponent }
+  { path: 'info', component: InfoComponent },
+  { path: 'cheat-sheet', component: CheatSheetComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

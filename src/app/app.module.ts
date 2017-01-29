@@ -21,6 +21,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ThemeOptionComponent } from './theme-option/theme-option.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { BoardComponent } from './board/board.component';
+import { BasicBoardComponent } from './basic-board/basic-board.component';
+import { CheatSheetComponent } from './cheat-sheet/cheat-sheet.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { BoardComponent } from './board/board.component';
     SettingsComponent,
     ThemeOptionComponent,
     TutorialComponent,
-    BoardComponent
+    BoardComponent,
+    BasicBoardComponent,
+    CheatSheetComponent
   ],
   imports: [
     BrowserModule,

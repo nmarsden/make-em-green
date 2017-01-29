@@ -1,0 +1,10 @@
+<div class="cheat-sheet-page">
+  <div class="puzzle-container"
+       [class.is-duplicate]="puzzle.isDuplicate"
+       *ngFor="let puzzle of puzzles">
+    <div class="puzzle-header">{{ puzzle.level }}</div>
+    <app-basic-board
+      [squares]="puzzle.squares">
+    </app-basic-board>
+  </div>
+</div>
