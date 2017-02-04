@@ -4,8 +4,14 @@
       <p class="lead">In a world where there are <span class="highlight unselected">non-green</span> blocks, you have been tasked with making them all <span class="highlight selected">green</span>!</p>
     </div>
     <div class="grid grid--gutters">
-      <div class="grid-cell">
-        <button class="btn btn-block" (mouseenter)="playBlipSound()" (click)="showSelectLevel()"><div class="icon icon-medium icon-star-outline"></div>Play</button>
+      <div *ngIf="!isFirstLevelSolved" class="grid-cell">
+        <button class="btn btn-block" (mouseenter)="playBlipSound()" (click)="showLevel()"><div class="icon icon-medium icon-bullseye"></div>Play</button>
+      </div>
+      <div *ngIf="isFirstLevelSolved" class="grid-cell">
+        <button class="btn btn-block" (mouseenter)="playBlipSound()" (click)="showLevel()"><div class="icon icon-medium icon-bullseye"></div>Continue</button>
+      </div>
+      <div *ngIf="isFirstLevelSolved" class="grid-cell">
+        <button class="btn btn-block" (mouseenter)="playBlipSound()" (click)="showSelectLevel()"><div class="icon icon-medium icon-star-outline"></div>Select Level</button>
       </div>
     </div>
     <div class="grid grid--gutters">

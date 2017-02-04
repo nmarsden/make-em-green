@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../app.routes.animations';
 import { SoundService } from "../services/sound.service";
 import { Router } from "@angular/router";
+import { LevelService } from "../services/level.service";
 
 @Component({
   selector: 'app-home',
@@ -17,17 +18,26 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
+  private isFirstLevelSolved;
+
   constructor(
     private router: Router,
-    private soundService: SoundService) {
+    private soundService: SoundService,
+    private levelService: LevelService) {
   }
 
   ngOnInit() {
+    this.isFirstLevelSolved = this.levelService.isLevelSolved(1);
   }
 
   showSelectLevel () {
     this.soundService.playTransitionSound();
     this.router.navigate(['/select-level']);
+  }
+
+  showLevel () {
+    this.soundService.playTransitionSound();
+    this.router.navigate(['/level']);
   }
 
   showSettings () {
