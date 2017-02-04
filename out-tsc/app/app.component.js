@@ -12,10 +12,12 @@ import { GameStateService } from "./services/game-state.service";
 import { SoundService } from "./services/sound.service";
 import { Router, NavigationEnd } from "@angular/router";
 import { SettingsService } from "./services/settings.service";
+import { ThemeService } from "./services/theme.service";
 export var AppComponent = (function () {
-    function AppComponent(gameStateService, settingsService, soundService, router) {
+    function AppComponent(gameStateService, settingsService, themeService, soundService, router) {
         this.gameStateService = gameStateService;
         this.settingsService = settingsService;
+        this.themeService = themeService;
         this.soundService = soundService;
         this.router = router;
     }
@@ -24,9 +26,11 @@ export var AppComponent = (function () {
         // init game state
         this.gameStateService.restoreState();
         this.isSoundOn = this.settingsService.getIsSoundOn();
-        this.theme = this.settingsService.getTheme();
-        // subscribe to theme updated event
-        this.settingsService.subscribeToThemeUpdatedEvent(function (theme) { _this.theme = theme; });
+        this.themeClassObject = this.themeService.getThemeClassObject(this.settingsService.getTheme());
+        // update the themeClassObject when the theme is updated
+        this.settingsService.subscribeToThemeUpdatedEvent(function (theme) {
+            _this.themeClassObject = _this.themeService.getThemeClassObject(theme);
+        });
         // init sounds
         this.soundService.initSounds(this.isSoundOn);
         // subscribe to router events to save state whenever the route changes
@@ -59,7 +63,7 @@ export var AppComponent = (function () {
                 './app.component.less'
             ]
         }), 
-        __metadata('design:paramtypes', [GameStateService, SettingsService, SoundService, Router])
+        __metadata('design:paramtypes', [GameStateService, SettingsService, ThemeService, SoundService, Router])
     ], AppComponent);
     return AppComponent;
 }());

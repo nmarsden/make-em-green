@@ -11,16 +11,23 @@ import { Component } from '@angular/core';
 import { routerTransition } from '../app.routes.animations';
 import { SoundService } from "../services/sound.service";
 import { Router } from "@angular/router";
+import { LevelService } from "../services/level.service";
 export var HomeComponent = (function () {
-    function HomeComponent(router, soundService) {
+    function HomeComponent(router, soundService, levelService) {
         this.router = router;
         this.soundService = soundService;
+        this.levelService = levelService;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        this.isFirstLevelSolved = this.levelService.isLevelSolved(1);
     };
     HomeComponent.prototype.showSelectLevel = function () {
         this.soundService.playTransitionSound();
         this.router.navigate(['/select-level']);
+    };
+    HomeComponent.prototype.showLevel = function () {
+        this.soundService.playTransitionSound();
+        this.router.navigate(['/level']);
     };
     HomeComponent.prototype.showSettings = function () {
         this.soundService.playTransitionSound();
@@ -50,7 +57,7 @@ export var HomeComponent = (function () {
                 routerTransition()
             ]
         }), 
-        __metadata('design:paramtypes', [Router, SoundService])
+        __metadata('design:paramtypes', [Router, SoundService, LevelService])
     ], HomeComponent);
     return HomeComponent;
 }());

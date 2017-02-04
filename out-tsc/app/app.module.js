@@ -17,6 +17,7 @@ import { PuzzleService } from './services/puzzle.service';
 import { LevelService } from './services/level.service';
 import { SoundService } from "./services/sound.service";
 import { SettingsService } from "./services/settings.service";
+import { ThemeService } from "./services/theme.service";
 import { AppComponent } from './app.component';
 import { LevelComponent } from './level/level.component';
 import { HomeComponent } from './home/home.component';
@@ -26,6 +27,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ThemeOptionComponent } from './theme-option/theme-option.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { BoardComponent } from './board/board.component';
+import { BasicBoardComponent } from './basic-board/basic-board.component';
+import { CheatSheetComponent } from './cheat-sheet/cheat-sheet.component';
 export var AppModule = (function () {
     function AppModule() {
     }
@@ -40,7 +43,9 @@ export var AppModule = (function () {
                 SettingsComponent,
                 ThemeOptionComponent,
                 TutorialComponent,
-                BoardComponent
+                BoardComponent,
+                BasicBoardComponent,
+                CheatSheetComponent
             ],
             imports: [
                 BrowserModule,
@@ -53,7 +58,8 @@ export var AppModule = (function () {
                 PuzzleService,
                 LevelService,
                 SoundService,
-                SettingsService
+                SettingsService,
+                ThemeService
             ],
             bootstrap: [
                 AppComponent

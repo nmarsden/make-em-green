@@ -216,8 +216,33 @@ export var PuzzleService = (function () {
     PuzzleService.prototype.getPuzzle = function (level) {
         return this.puzzles[level - 1];
     };
+    PuzzleService.prototype.getSolution = function (level) {
+        return this.solutions[level - 1];
+    };
     PuzzleService.prototype.getNumMovesForKnownSolution = function (level) {
         return this.solutions[level - 1].length;
+    };
+    PuzzleService.prototype.checkForDuplicatePuzzles = function () {
+        console.log("Checking for duplicate puzzles");
+        for (var i = 0; i < this.puzzles.length - 1; i++) {
+            // console.log(`checking: puzzle ${i}`);
+            for (var j = i + 1; j < this.puzzles.length; j++) {
+                var isDuplicate = true;
+                if (this.puzzles[i].length !== this.puzzles[j].length) {
+                    isDuplicate = false;
+                }
+                else {
+                    for (var n = 0; n < this.puzzles[i].length; n++) {
+                        if (this.puzzles[i][n] !== this.puzzles[j][n]) {
+                            isDuplicate = false;
+                        }
+                    }
+                }
+                if (isDuplicate) {
+                    console.log("puzzle " + i + " === puzzle " + j);
+                }
+            }
+        }
     };
     PuzzleService = __decorate([
         Injectable(), 

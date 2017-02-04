@@ -8,10 +8,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { ThemeService } from "../services/theme.service";
 export var ThemeOptionComponent = (function () {
-    function ThemeOptionComponent() {
+    function ThemeOptionComponent(themeService) {
+        this.themeService = themeService;
     }
     ThemeOptionComponent.prototype.ngOnInit = function () {
+        this.themeClassObject = this.themeService.getThemeClassObject(this.theme);
     };
     ThemeOptionComponent = __decorate([
         Component({
@@ -20,7 +23,7 @@ export var ThemeOptionComponent = (function () {
             templateUrl: './theme-option.component.html',
             styleUrls: ['./theme-option.component.less']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [ThemeService])
     ], ThemeOptionComponent);
     return ThemeOptionComponent;
 }());
